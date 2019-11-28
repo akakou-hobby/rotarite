@@ -1,4 +1,7 @@
-import * as firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/analytics";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDs6KIoUnAwCs1hDuIE-ZxxKZSQVMD09kw",
@@ -25,17 +28,22 @@ const getCurrentUser = () => {
 };
 
 class Scene {
-  constructor(data, content = "") {
+  constructor({ data = null, content = null, prev = null }) {
     if (data) {
       this.data = data;
-    } else {
+    } else if (content) {
       const date = new Date();
       const now = date.getTime();
 
+      const prevId = prevId ? prev.data.time : null;
+
       this.data = {
         time: now,
-        content: content
+        content: content,
+        prevId: prevId
       };
+    } else {
+      throw new Error("inviled arguments");
     }
   }
 }
