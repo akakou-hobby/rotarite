@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/analytics";
+// import "firebase/analytics";
 import "firebase/firestore";
 
 const firebaseConfig = {
@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  // firebase.analytics();
 }
 
 const initFirebase = () => {
@@ -28,19 +28,21 @@ const getCurrentUser = () => {
 };
 
 class Scene {
-  constructor({ data = null, content = null, prev = null }) {
+  constructor({ data = null, content = null, prev = null, novel = null }) {
     if (data) {
       this.data = data;
-    } else if (content) {
+    } else if (content && novel) {
       const date = new Date();
       const now = date.getTime();
 
-      const prevId = prevId ? prev.data.time : null;
+      const prevId = prev ? prev.data.id : null;
+      const novelId = novel ? novel.data.id : null;
 
       this.data = {
-        time: now,
+        id: now,
         content: content,
-        prevId: prevId
+        prevId: prevId,
+        novelId: novelId
       };
     } else {
       throw new Error("inviled arguments");

@@ -15,15 +15,23 @@ import Logo from "~/components/Logo.vue";
 export default {
   methods: {
     submit() {
-      const scene = new this.$Scene();
+      const scene = new this.$Scene({
+        content: this.content,
+        novel: this.novel
+      });
       this.$SceneRepository.store(scene);
-      location.href = "/";
+      // location.href = "/";
     }
   },
   mounted() {},
   data() {
     return {
-      content: ""
+      content: "",
+      novel: {
+        data: {
+          id: 10
+        }
+      }
     };
   }
 };
