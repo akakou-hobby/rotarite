@@ -3,7 +3,7 @@
     <p>text content</p>
     <textarea v-model="content"></textarea>
     <br />
-    <button type="button" value="submit" v-on:click="submit()">ログイン</button>
+    <button type="button" value="submit" v-on:click="submit()">投稿</button>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
         novel: this.novel
       });
       this.$SceneRepository.store(scene);
-      // location.href = "/";
+      location.href = "/";
     }
   },
   mounted() {},
