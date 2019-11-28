@@ -11,15 +11,69 @@ const firebaseConfig = {
   measurementId: "G-J5E5G995V7"
 };
 
-const initFirebase = () => {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  }
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+}
 
+const initFirebase = () => {
   return firebase;
 };
 
+const getCurrentUser = () => {
+  return firebase.auth().currentUser;
+};
+
+class Scene {
+  constructor(data, content = "") {
+    if (data) {
+      this.data = data;
+    } else {
+      const date = new Date();
+      const now = date.getTime();
+
+      this.data = {
+        time: now,
+        content: content
+      };
+    }
+  }
+}
+
+class SceneRepository {
+  constructor() {}
+  findById(sceneId) {
+    const data = db.collection("scenes").doc(sceneId);
+    return new Scene(data);
+  }
+
+  findNext(scene) {
+    const nextId = scene.next;
+    return new this.findById(nextId);
+  }
+
+  store(scene) {
+    const db = firebase.firestore();
+
+    const date = new Date();
+    const now = date.getTime();
+
+    const currentUser = getCurrentUser();
+
+    db.collection("users")
+      .doc(currentUser.uid)
+      .collection("scene")
+      .doc(`${now}`)
+      .set(scene.data);
+  }
+}
+
+const sceneRepo = new SceneRepository();
+
 export default ({}, inject) => {
   inject("firebase", initFirebase);
+  inject("Scene", Scene);
+
+  inject("SceneRepository", sceneRepo);
+  inject("currentUser", getCurrentUser);
 };
