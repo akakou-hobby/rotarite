@@ -19,10 +19,6 @@ if (!firebase.apps.length) {
   // firebase.analytics();
 }
 
-const initFirebase = () => {
-  return firebase;
-};
-
 const getCurrentUser = () => {
   return firebase.auth().currentUser;
 };
@@ -81,7 +77,7 @@ class SceneRepository {
 const sceneRepo = new SceneRepository();
 
 export default ({}, inject) => {
-  inject("firebase", initFirebase);
+  inject("firebase", firebase);
   inject("Scene", Scene);
 
   inject("SceneRepository", sceneRepo);
