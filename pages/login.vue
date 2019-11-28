@@ -16,7 +16,7 @@ import Logo from "~/components/Logo.vue";
 export default {
   methods: {
     login() {
-      this.$firebase()
+      this.$firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .catch(error => {
@@ -27,16 +27,12 @@ export default {
     }
   },
   mounted() {
-    const firebase = this.$firebase();
-
-    this.$firebase()
-      .auth()
-      .onAuthStateChanged(user => {
-        if (user) {
-          location.href = "/";
-        } else {
-        }
-      });
+    this.$firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        location.href = "/";
+      } else {
+      }
+    });
   },
   data() {
     return {
