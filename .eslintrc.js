@@ -1,17 +1,13 @@
 module.exports = {
-  root: true,
+  root: false,
   env: {
-    browser: true,
-    node: true
+    browser: false,
+    node: false
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: "babel-eslint"
   },
-  extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
-  ],
+  extends: ["@nuxtjs", "plugin:nuxt/recommended"],
   // add your custom rules here
-  rules: {
-  }
-}
+  rules: {}
+};
