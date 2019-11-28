@@ -15,11 +15,14 @@ import Logo from "~/components/Logo.vue";
 export default {
   methods: {
     submit() {
-      const scene = new this.$Scene({
+      const sceneRepo = new this.$SceneRepository();
+
+      sceneRepo.create({
         content: this.content,
-        novel: this.novel
+        novel: this.novel,
+        prev: null
       });
-      this.$SceneRepository.store(scene);
+
       location.href = "/";
     }
   },

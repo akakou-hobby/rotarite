@@ -24,30 +24,14 @@ const getCurrentUser = () => {
 };
 
 class Scene {
-  constructor({ data = null, content = null, prev = null, novel = null }) {
-    if (data) {
-      this.data = data;
-    } else if (content && novel) {
-      const date = new Date();
-      const now = date.getTime();
-
-      const prevId = prev ? prev.data.id : null;
-      const novelId = novel ? novel.data.id : null;
-
-      this.data = {
-        id: now,
-        content: content,
-        prevId: prevId,
-        novelId: novelId
-      };
-    } else {
-      throw new Error("inviled arguments");
-    }
+  constructor(data) {
+    this.data = data;
   }
 }
 
 class SceneRepository {
   constructor() {}
+
   findById(sceneId) {
     const data = db.collection("scenes").doc(sceneId);
     return new Scene(data);
@@ -72,6 +56,25 @@ class SceneRepository {
       .doc(`${now}`)
       .set(scene.data);
   }
+
+  create({ content = null, prev = null, novel = null }) {
+    const date = new Date();
+    const now = date.getTime();
+
+    const prevId = prev ? prev.data.id : null;
+    const novelId = novel ? novel.data.id : null;
+
+    const scene = new Scene({
+      id: now,
+      content: content,
+      prevId: prevId,
+      novelId: novelId
+    });
+
+    console.log(this.store);
+    this.store(scene);
+    return scene;
+  }
 }
 
 const sceneRepo = new SceneRepository();
@@ -79,7 +82,6 @@ const sceneRepo = new SceneRepository();
 export default ({}, inject) => {
   inject("firebase", firebase);
   inject("Scene", Scene);
-
-  inject("SceneRepository", sceneRepo);
+  inject("SceneRepository", SceneRepository);
   inject("currentUser", getCurrentUser);
 };
