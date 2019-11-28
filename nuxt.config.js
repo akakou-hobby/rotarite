@@ -15,17 +15,7 @@ export default {
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    script: [
-      {
-        src: "https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"
-      },
-      {
-        src: "https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"
-      },
-      {
-        src: "https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"
-      }
-    ]
+    script: []
   },
   /*
    ** Customize the progress-bar color
@@ -38,7 +28,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ["~/plugins/app.js"],
   /*
    ** Nuxt.js dev-modules
    */

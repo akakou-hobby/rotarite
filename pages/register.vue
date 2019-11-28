@@ -13,21 +13,11 @@
 <script>
 import Logo from "~/components/Logo.vue";
 
-var firebaseConfig = {
-  apiKey: "AIzaSyDs6KIoUnAwCs1hDuIE-ZxxKZSQVMD09kw",
-  authDomain: "rotarite-f63f1.firebaseapp.com",
-  databaseURL: "https://rotarite-f63f1.firebaseio.com",
-  projectId: "rotarite-f63f1",
-  storageBucket: "rotarite-f63f1.appspot.com",
-  messagingSenderId: "1039269529152",
-  appId: "1:1039269529152:web:9b4eed34f5d42a461341a5",
-  measurementId: "G-J5E5G995V7"
-};
-
 export default {
   methods: {
     login() {
-      console.log(this.email);
+      const firebase = this.$firebase();
+
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -38,8 +28,7 @@ export default {
     }
   },
   mounted() {
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    const firebase = this.$firebase();
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
