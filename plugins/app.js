@@ -50,6 +50,11 @@ class SceneRepository {
 
     const currentUser = getCurrentUser();
 
+    console.log(currentUser);
+
+    console.log(`${now}`);
+    console.log(scene.data);
+
     db.collection("users")
       .doc(currentUser.uid)
       .collection("scene")
@@ -71,7 +76,6 @@ class SceneRepository {
       novelId: novelId
     });
 
-    console.log(this.store);
     this.store(scene);
     return scene;
   }
@@ -79,9 +83,66 @@ class SceneRepository {
 
 const sceneRepo = new SceneRepository();
 
+class Novel {
+  constructor(data) {
+    this.data = data;
+  }
+}
+
+class NovelRepository {
+  constructor() {}
+  create({ title = null, summary = null, rootContent = null }) {
+    const scaneRepo = new SceneRepository();
+
+    const date = new Date();
+    const now = date.getTime();
+
+    const root = scaneRepo.create({
+      content: rootContent,
+      novel: {
+        data: {
+          id: now
+        }
+      },
+      prev: null
+    });
+
+    const novel = new Novel({
+      id: now,
+      title: title,
+      summary: summary,
+      root: root.data.id
+    });
+
+    this.store(novel);
+    return novel;
+  }
+  store(novel) {
+    const db = firebase.firestore();
+
+    const date = new Date();
+    const now = date.getTime();
+
+    const currentUser = getCurrentUser();
+
+    console.log(novel.data);
+
+    db.collection("users")
+      .doc(currentUser.uid)
+      .collection("novel")
+      .doc(`${now}`)
+      .set(novel.data);
+  }
+}
+
 export default ({}, inject) => {
   inject("firebase", firebase);
+
   inject("Scene", Scene);
   inject("SceneRepository", SceneRepository);
+
+  inject("Novel", Novel);
+  inject("NovelRepository", NovelRepository);
+
   inject("currentUser", getCurrentUser);
 };
