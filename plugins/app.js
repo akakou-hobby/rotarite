@@ -35,8 +35,19 @@ class Scene {
 class SceneRepository {
   constructor() {}
 
-  findById(sceneId) {
-    const data = db.collection("scene").doc(sceneId);
+  async findById(sceneId) {
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup("scene")
+      .where("id", "==", sceneId)
+      .get();
+
+    var data = null;
+    snapshots.forEach(doc => {
+      data = doc.data();
+    });
+
     return new Scene(data);
   }
 
