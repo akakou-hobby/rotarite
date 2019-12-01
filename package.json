@@ -17,6 +17,7 @@
     "bootstrap": "^4.1.3",
     "bootstrap-vue": "^2.0.0",
     "firebase": "^7.5.0",
+    "get-parameter": "^1.0.8",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

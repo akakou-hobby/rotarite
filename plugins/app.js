@@ -1,5 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+
+import getParameter from "get-parameter";
+
 // import "firebase/analytics";
 import "firebase/firestore";
 
@@ -32,8 +35,19 @@ class Scene {
 class SceneRepository {
   constructor() {}
 
-  findById(sceneId) {
-    const data = db.collection("scenes").doc(sceneId);
+  async findById(sceneId) {
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup("scene")
+      .where("id", "==", sceneId)
+      .get();
+
+    var data = null;
+    snapshots.forEach(doc => {
+      data = doc.data();
+    });
+
     return new Scene(data);
   }
 
@@ -81,8 +95,6 @@ class SceneRepository {
   }
 }
 
-const sceneRepo = new SceneRepository();
-
 class Novel {
   constructor(data) {
     this.data = data;
@@ -125,15 +137,49 @@ class NovelRepository {
 
     const currentUser = getCurrentUser();
 
-    console.log(novel.data);
-
     db.collection("users")
       .doc(currentUser.uid)
       .collection("novel")
-      .doc(`${now}`)
+      .doc(novel.data.id)
       .set(novel.data);
   }
+
+  async findById(novelId) {
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup("novel")
+      .where("id", "==", novelId)
+      .get();
+
+    var data = null;
+    snapshots.forEach(doc => {
+      data = doc.data();
+    });
+
+    return new Novel(data);
+  }
 }
+
+const getCurrentScene = async () => {
+  const sceneStringId = getParameter("scene");
+  const sceneId = Number(sceneStringId);
+
+  if (sceneId) {
+    const sceneRepo = new SceneRepository();
+    return await sceneRepo.findById(sceneId);
+  }
+};
+
+const getCurrentNovel = async () => {
+  const novelStringId = getParameter("novel");
+  const novelId = Number(novelStringId);
+
+  if (novelId) {
+    const novelRepo = new NovelRepository();
+    return await novelRepo.findById(novelId);
+  }
+};
 
 export default ({}, inject) => {
   inject("firebase", firebase);
@@ -145,4 +191,6 @@ export default ({}, inject) => {
   inject("NovelRepository", NovelRepository);
 
   inject("currentUser", getCurrentUser);
+  inject("currentScene", getCurrentScene);
+  inject("currentNovel", getCurrentNovel);
 };
