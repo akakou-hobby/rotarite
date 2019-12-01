@@ -1,5 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+
+import getParameter from "get-parameter";
+
 // import "firebase/analytics";
 import "firebase/firestore";
 
@@ -33,7 +36,7 @@ class SceneRepository {
   constructor() {}
 
   findById(sceneId) {
-    const data = db.collection("scenes").doc(sceneId);
+    const data = db.collection("scene").doc(sceneId);
     return new Scene(data);
   }
 
@@ -125,15 +128,39 @@ class NovelRepository {
 
     const currentUser = getCurrentUser();
 
-    console.log(novel.data);
-
     db.collection("users")
       .doc(currentUser.uid)
       .collection("novel")
-      .doc(`${now}`)
+      .doc(novel.data.id)
       .set(novel.data);
   }
+
+  async findById(novelId) {
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup("novel")
+      .where("id", "==", novelId)
+      .get();
+
+    var data = null;
+    snapshots.forEach(doc => {
+      data = doc.data();
+    });
+
+    return new Novel(data);
+  }
 }
+
+const getCurrentNovel = async () => {
+  const novelStringId = getParameter("novel");
+  const novelId = Number(novelStringId);
+
+  if (novelId) {
+    const novelRepo = new NovelRepository();
+    return await novelRepo.findById(novelId);
+  }
+};
 
 export default ({}, inject) => {
   inject("firebase", firebase);
@@ -145,4 +172,5 @@ export default ({}, inject) => {
   inject("NovelRepository", NovelRepository);
 
   inject("currentUser", getCurrentUser);
+  inject("currentNovel", getCurrentNovel);
 };
