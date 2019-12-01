@@ -163,6 +163,16 @@ class NovelRepository {
   }
 }
 
+const getCurrentScene = async () => {
+  const sceneStringId = getParameter("scene");
+  const sceneId = Number(sceneStringId);
+
+  if (sceneId) {
+    const sceneRepo = new SceneRepository();
+    return await sceneRepo.findById(sceneId);
+  }
+};
+
 const getCurrentNovel = async () => {
   const novelStringId = getParameter("novel");
   const novelId = Number(novelStringId);
@@ -183,5 +193,6 @@ export default ({}, inject) => {
   inject("NovelRepository", NovelRepository);
 
   inject("currentUser", getCurrentUser);
+  inject("currentScene", getCurrentScene);
   inject("currentNovel", getCurrentNovel);
 };
