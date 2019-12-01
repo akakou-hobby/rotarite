@@ -95,8 +95,6 @@ class SceneRepository {
   }
 }
 
-const sceneRepo = new SceneRepository();
-
 class Novel {
   constructor(data) {
     this.data = data;
