@@ -24,11 +24,11 @@ class ScenePage extends React.Component {
     this.scene = await sceneRepository.findById(this.sceneId);
 
     const novelRepository = new NovelRepository();
-    this.novel = await novelRepository.findById(this.scene.data.novelId);
+    // this.novel = await novelRepository.findById(this.scene.data.novelId);
 
     this.setState({
-      title: this.novel.data.title,
-      content: this.scene.data.content
+      // title: this.novel.data.title,
+      content: this.scene.content
     });
   }
 
