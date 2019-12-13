@@ -1,15 +1,10 @@
 version: "3"
 services:
   app:
-    image: node:8.16.2-jessie
+    image: python:buster
     ports:
-      - "3000:3000"
-      - "9229:9229"
+      - "8000:8000"
     working_dir: /app
-    command: sh -c 'npm install && npm run debug'
+    command: 'python3 -m http.server' 
     volumes:
-      - ".:/app"
-      - "/app/node_modules"
-    environment:
-      - HOST=0.0.0.0
-      - PORT=3000
+      - "./src:/app"
