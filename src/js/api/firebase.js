@@ -9,6 +9,9 @@ const firebaseConfig = {
   measurementId: "G-J5E5G995V7"
 };
 
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
 const currentUser = () => {
   return firebase.auth().currentUser;
 };

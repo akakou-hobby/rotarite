@@ -10,9 +10,21 @@ class Register extends React.Component {
   }
 
   handleLogin(e) {
-    console.log(e);
-    alert("email: " + this.state.email);
-    alert("password: " + this.state.password);
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        location.href = "/";
+      } else {
+        location.href = "/#/register";
+      }
+    });
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
 
   render() {
