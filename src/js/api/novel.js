@@ -5,6 +5,15 @@ class Novel {
     this.summary = summary;
     this.root = root;
   }
+
+  data() {
+    return {
+      id: this.id,
+      title: this.title,
+      summary: this.summary,
+      root: this.root
+    };
+  }
 }
 
 class NovelRepository {
@@ -32,13 +41,13 @@ class NovelRepository {
   }
   store(novel) {
     const db = firebase.firestore();
-    const currentUser = getCurrentUser();
+    const uid = currentUser().uid;
 
     db.collection("users")
-      .doc(currentUser.uid)
+      .doc(uid)
       .collection("novel")
-      .doc(novel.id)
-      .set(novel);
+      .doc(novel.id.toString())
+      .set(novel.data());
   }
 
   async findById(novelId) {
