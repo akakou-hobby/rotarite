@@ -6,10 +6,10 @@ class Register extends React.Component {
       password: ""
     };
 
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegiser = this.handleRegiser.bind(this);
   }
 
-  handleLogin(e) {
+  handleRegiser(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         location.href = "/";
