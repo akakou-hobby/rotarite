@@ -47,7 +47,13 @@ class NovelRepository {
       .doc(uid)
       .collection("novel")
       .doc(novel.id.toString())
-      .set(novel.data());
+      .set(novel.data())
+      .then(() => {
+        console.log(`${novel.id} successfully written!`);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   async findById(novelId) {

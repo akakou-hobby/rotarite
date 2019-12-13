@@ -48,7 +48,13 @@ class SceneRepository {
       .doc(uid)
       .collection("scene")
       .doc(`${scene.id}`)
-      .set(scene.data());
+      .set(scene.data())
+      .then(() => {
+        console.log(`${scene.id} successfully written!`);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   create({ content = null, prevId = null, novelId = null }) {
