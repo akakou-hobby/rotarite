@@ -27,7 +27,8 @@ class PostNovel extends React.Component {
       root: root
     });
 
-    location.href = "/";
+    this.props.history.push("/");
+    // location.href = "/";
   }
 
   render() {

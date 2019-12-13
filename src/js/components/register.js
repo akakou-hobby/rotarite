@@ -12,9 +12,7 @@ class Register extends React.Component {
   handleRegiser(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        location.href = "/";
-      } else {
-        location.href = "/#/register";
+        this.props.history.push("/");
       }
     });
 
