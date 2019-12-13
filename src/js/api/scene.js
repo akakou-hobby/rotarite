@@ -1,6 +1,9 @@
 class Scene {
-  constructor(data) {
-    this.data = data;
+  constructor({ id = null, content = null, prevId = null, novelId = null }) {
+    this.id = id;
+    this.content = content;
+    this.prevId = prevId;
+    this.novelId = novelId;
   }
 }
 
@@ -30,17 +33,13 @@ class SceneRepository {
 
   store(scene) {
     const db = firebase.firestore();
-
-    const date = new Date();
-    const now = date.getTime();
-
     const currentUser = getCurrentUser();
 
     db.collection("users")
       .doc(currentUser.uid)
       .collection("scene")
-      .doc(`${now}`)
-      .set(scene.data);
+      .doc(`${scene.id}`)
+      .set(scene);
   }
 
   create({ content = null, prevId = null, novelId = null }) {
