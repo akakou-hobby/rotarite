@@ -1,9 +1,9 @@
 class Novel {
-  constructor({ id = null, title = null, summary = null, root = null }) {
+  constructor({ id = null, title = null, summary = null, rootId = null }) {
     this.id = id;
     this.title = title;
     this.summary = summary;
-    this.root = root;
+    this.rootId = rootId;
   }
 
   data() {
@@ -11,7 +11,7 @@ class Novel {
       id: this.id,
       title: this.title,
       summary: this.summary,
-      root: this.root
+      rootId: this.rootId
     };
   }
 }
@@ -25,6 +25,7 @@ class NovelRepository {
     const now = date.getTime();
 
     root.id = now;
+    root.novelId = now;
     root.prevId = null;
 
     scaneRepo.store(root);
@@ -33,7 +34,7 @@ class NovelRepository {
       id: now,
       title: title,
       summary: summary,
-      root: root.id
+      rootId: root.id
     });
 
     this.store(novel);
