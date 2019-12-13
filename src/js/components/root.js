@@ -10,8 +10,8 @@ const Root = () => (
     <Route path="/register" component={Register} />
     <Route path="/login" component={Login} />
     <Route path="/scene/:id" component={ScenePage} />
+    <Route path="/scene/:id/new" component={PostScene} />
     <Route path="/novel/new" component={PostNovel} />
-    {/* <Route path="/scene/:id/new" component={PostScene} /> */}
   </Router>
 );
 
