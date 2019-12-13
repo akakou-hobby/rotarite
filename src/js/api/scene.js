@@ -5,6 +5,15 @@ class Scene {
     this.prevId = prevId;
     this.novelId = novelId;
   }
+
+  data() {
+    return {
+      id: this.id,
+      content: this.content,
+      prevId: this.prevId,
+      novelId: this.novelId
+    };
+  }
 }
 
 class SceneRepository {
@@ -33,13 +42,13 @@ class SceneRepository {
 
   store(scene) {
     const db = firebase.firestore();
-    const currentUser = getCurrentUser();
+    const uid = currentUser().uid;
 
     db.collection("users")
-      .doc(currentUser.uid)
+      .doc(uid)
       .collection("scene")
       .doc(`${scene.id}`)
-      .set(scene);
+      .set(scene.data());
   }
 
   create({ content = null, prevId = null, novelId = null }) {
