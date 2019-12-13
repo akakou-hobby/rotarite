@@ -16,7 +16,7 @@ class ScenePage extends React.Component {
     const sceneRepo = new SceneRepository();
     sceneRepo.create(this.state);
 
-    location.href = "/";
+    this.props.history.push("/");
   }
 
   async componentDidMount() {
