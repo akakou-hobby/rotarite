@@ -10,9 +10,17 @@ class Register extends React.Component {
     return (
       <div>
         <h1>登録</h1>
+        <p>メールアドレス</p>
+        <input v-model="email" placeholder="taro@example.com" />
+        <br />
+        <p>パスワード</p>
+        <input type="password" v-model="password" placeholder="********" />
+        <br />
+        <button type="button" value="submit" onClick={e => {}}>
+          新規登録
+        </button>
         <button
-          onClick={e => {
-            console.log(e, this);
+          onClick={() => {
             this.props.history.push("/login");
           }}
         >
