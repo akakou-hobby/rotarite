@@ -1,4 +1,4 @@
-class ScenePage extends React.Component {
+class ShowScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
