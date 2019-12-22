@@ -11,6 +11,7 @@ const Root = () => (
     <Route path="/login" component={Login} />
     <Route path="/scene/:id" component={ScenePage} />
     <Route path="/scene/:id/new" component={PostScene} />
+    <Route path="/novel/:id" component={ShowNovel} />
     <Route path="/novel/new" component={PostNovel} />
   </Router>
 );
