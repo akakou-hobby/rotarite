@@ -48,7 +48,7 @@ class NavBar extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">More</a>
+              <a className="navbar-link">サイト情報</a>
 
               <div className="navbar-dropdown">
                 <a
@@ -59,7 +59,7 @@ class NavBar extends React.Component {
                 </a>
                 <hr className="navbar-divider" />
                 <a className="navbar-item" href="https://twitter.com/_akakou">
-                  開発者について
+                  開発者（akakou）
                 </a>
               </div>
             </div>
