@@ -12,3 +12,22 @@ class Like extends FirestoreObject {
     };
   }
 }
+
+class LikeRepository extends FirestoreObjectRepository {
+  constructor() {
+    super(Like);
+  }
+
+  create({ sceneId = null }) {
+    const date = new Date();
+    const now = date.getTime();
+
+    const like = new Like({
+      id: now,
+      sceneId: sceneId
+    });
+
+    this.store(like);
+    return like;
+  }
+}
