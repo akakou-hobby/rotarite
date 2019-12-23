@@ -1,22 +1,30 @@
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
+
     this.state = {
       loggined: false
     };
 
-    this.handlePost = this.handlePost.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
-    const self = this;
-    setInterval(() => {
+    const update = () => {
       const user = currentUser();
-      self.setState({ loggined: Boolean(user) });
-    }, 1000);
+      this.setState({ loggined: Boolean(user) });
+    };
+
+    setTimeout(update, 500, 1000, 5000, 10000);
   }
 
-  async handlePost(e) {}
+  async handleClick(e) {
+    location.href = "/#/novel/new";
+
+    // 謎
+    // this.props.history.push("/novel/new");
+  }
 
   render() {
     return (
@@ -45,9 +53,16 @@ class NavBar extends React.Component {
               <a className="navbar-link">More</a>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item">Github</a>
+                <a
+                  className="navbar-item"
+                  href="https://github.com/akakou/rotarite"
+                >
+                  Github
+                </a>
                 <hr className="navbar-divider" />
-                <a className="navbar-item">開発者について</a>
+                <a className="navbar-item" href="https://twitter.com/_akakou">
+                  開発者について
+                </a>
               </div>
             </div>
           </div>
@@ -55,7 +70,9 @@ class NavBar extends React.Component {
           <div className="navbar-end">
             <a className="navbar-item">読書する</a>
 
-            <a className="navbar-item">投稿する</a>
+            <a className="navbar-item" onClick={this.handleClick}>
+              投稿する
+            </a>
             <div className="navbar-item">
               {!this.state.loggined && (
                 <div className="buttons">
@@ -68,7 +85,6 @@ class NavBar extends React.Component {
             </div>
           </div>
         </div>
-        <p></p>
       </nav>
     );
   }
