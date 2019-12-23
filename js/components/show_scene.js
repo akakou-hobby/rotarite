@@ -35,9 +35,14 @@ class ShowScene extends React.Component {
     const novelRepository = new NovelRepository();
     this.novel = await novelRepository.findById(this.scene.novelId);
 
+    const likeRepository = new LikeRepository();
+
+    this.like = await likeRepository.findMineById(this.sceneId);
+
     this.setState({
       title: this.novel.title,
-      content: this.scene.content
+      content: this.scene.content,
+      hasLiked: Boolean(this.like)
     });
   }
 
