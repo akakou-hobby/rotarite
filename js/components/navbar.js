@@ -2,12 +2,18 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      content: "",
-      summary: ""
+      loggined: false
     };
 
     this.handlePost = this.handlePost.bind(this);
+  }
+
+  async componentDidMount() {
+    const self = this;
+    setInterval(() => {
+      const user = currentUser();
+      self.setState({ loggined: Boolean(user) });
+    }, 1000);
   }
 
   async handlePost(e) {}
@@ -51,15 +57,18 @@ class NavBar extends React.Component {
 
             <a className="navbar-item">投稿する</a>
             <div className="navbar-item">
-              <div className="buttons">
-                <a className="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-light">Log in</a>
-              </div>
+              {!this.state.loggined && (
+                <div className="buttons">
+                  <a className="button is-primary">
+                    <strong>Sign up</strong>
+                  </a>
+                  <a className="button is-light">Log in</a>
+                </div>
+              )}
             </div>
           </div>
         </div>
+        <p></p>
       </nav>
     );
   }
