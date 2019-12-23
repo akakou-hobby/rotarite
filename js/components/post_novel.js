@@ -33,30 +33,50 @@ class PostNovel extends React.Component {
   render() {
     return (
       <div>
-        <h1>ノベルの作成</h1>
-        <p>タイトル</p>
-        <input
-          type="text"
-          value={this.state.title}
-          placeholder="桃太郎"
-          onChange={e => this.setState({ title: e.target.value })}
-        />
+        <h1 className="title">ノベルの作成</h1>
+        <div class="field">
+          <div class="control">
+            <label>タイトル</label>
+            <input
+              class="input"
+              type="text"
+              value={this.state.title}
+              placeholder="桃太郎"
+              onChange={e => this.setState({ title: e.target.value })}
+            />
+          </div>
+        </div>
 
-        <p>概要</p>
-        <textarea
-          placeholder="桃から生まれた人間が鬼を倒す、ジャパニーズトラディショナルファンタジー"
-          onChange={e => this.setState({ summary: e.target.value })}
-        ></textarea>
+        <div class="field">
+          <div class="control">
+            <label>概要</label>
+            <textarea
+              class="textarea"
+              placeholder="桃から生まれた人間が鬼を倒す、ジャパニーズトラディショナルファンタジー"
+              onChange={e => this.setState({ summary: e.target.value })}
+            ></textarea>
+          </div>
+        </div>
 
-        <p>シーン</p>
-        <textarea
-          placeholder="むかしむかしあるところにおじいさんとおばあさんがいました。"
-          onChange={e => this.setState({ content: e.target.value })}
-        ></textarea>
+        <div class="field">
+          <div class="control">
+            <label>最初</label>
+            <textarea
+              class="textarea"
+              placeholder="むかしむかしあるところにおじいさんとおばあさんがいました。"
+              onChange={e => this.setState({ content: e.target.value })}
+            ></textarea>
+          </div>
+        </div>
         <br />
-        <button type="button" value="submit" onClick={this.handlePost}>
-          投稿
-        </button>
+
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link" onClick={this.handlePost}>
+              投稿
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
