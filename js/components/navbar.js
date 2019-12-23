@@ -11,12 +11,10 @@ class NavBar extends React.Component {
   }
 
   async componentDidMount() {
-    const update = () => {
+    setInterval(() => {
       const user = currentUser();
       this.setState({ loggined: Boolean(user) });
-    };
-
-    setTimeout(update, 500, 1000, 5000, 10000);
+    }, 500);
   }
 
   async handleClick(e) {
