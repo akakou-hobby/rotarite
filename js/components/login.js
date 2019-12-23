@@ -30,11 +30,11 @@ class Login extends React.Component {
     return (
       <div>
         <h1 className="title">ログイン</h1>
-        <div class="field">
-          <label class="label">メールアドレス</label>
-          <div class="control">
+        <div className="field">
+          <label className="label">メールアドレス</label>
+          <div className="control">
             <input
-              class="input"
+              className="input"
               type="email"
               placeholder="taro@example.com"
               value={this.state.email}
@@ -43,11 +43,11 @@ class Login extends React.Component {
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">パスワード</label>
-          <div class="control">
+        <div className="field">
+          <label className="label">パスワード</label>
+          <div className="control">
             <input
-              class="input"
+              className="input"
               type="password"
               value={this.state.password}
               onChange={e => this.setState({ password: e.target.value })}
@@ -57,9 +57,9 @@ class Login extends React.Component {
 
         <br />
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link" onClick={this.handleLogin}>
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link" onClick={this.handleLogin}>
               ログイン
             </button>
           </div>
