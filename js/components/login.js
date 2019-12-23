@@ -63,6 +63,17 @@ class Login extends React.Component {
               ログイン
             </button>
           </div>
+
+          <div className="control">
+            <button
+              className="button is-link is-light"
+              onClick={() => {
+                this.props.history.push("/register");
+              }}
+            >
+              新規登録はこちら
+            </button>
+          </div>
         </div>
       </div>
     );
