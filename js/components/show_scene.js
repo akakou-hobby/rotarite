@@ -3,10 +3,12 @@ class ShowScene extends React.Component {
     super(props);
     this.state = {
       title: "",
-      content: ""
+      content: "",
+      hasLiked: false
     };
 
     this.handlePost = this.handlePost.bind(this);
+    this.handleLike = this.handleLike.bind(this);
 
     const params = this.props.match;
     this.sceneId = parseInt(params.params.id, 0);
@@ -17,6 +19,13 @@ class ShowScene extends React.Component {
     sceneRepo.create(this.state);
 
     this.props.history.push("/");
+  }
+
+  handleLike(e) {
+    const sceneId = this.sceneId;
+    const likeRepository = new LikeRepository();
+
+    likeRepository.create({ sceneId: sceneId });
   }
 
   async componentDidMount() {
@@ -37,6 +46,14 @@ class ShowScene extends React.Component {
       <div>
         <h1>{this.state.title}</h1>
         <p>{this.state.content}</p>
+
+        <button
+          onClick={e => {
+            this.handleLike(e);
+          }}
+        >
+          {!this.state.hasLiked ? "高評価" : "高評価を解除"}
+        </button>
       </div>
     );
   }
