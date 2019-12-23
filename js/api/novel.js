@@ -1,5 +1,6 @@
-class Novel {
+class Novel extends FirestoreObject {
   constructor({ id = null, title = null, summary = null, rootId = null }) {
+    super();
     this.id = id;
     this.title = title;
     this.summary = summary;
@@ -16,8 +17,11 @@ class Novel {
   }
 }
 
-class NovelRepository {
-  constructor() {}
+class NovelRepository extends FirestoreObjectRepository {
+  constructor() {
+    super(Novel);
+  }
+
   create({ title = null, summary = null, root = null }) {
     const scaneRepo = new SceneRepository();
 
@@ -39,38 +43,6 @@ class NovelRepository {
 
     this.store(novel);
     return novel;
-  }
-  store(novel) {
-    const db = firebase.firestore();
-    const uid = currentUser().uid;
-
-    db.collection("users")
-      .doc(uid)
-      .collection("novel")
-      .doc(novel.id.toString())
-      .set(novel.data())
-      .then(() => {
-        console.log(`${novel.id} successfully written!`);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-
-  async findById(novelId) {
-    const db = firebase.firestore();
-
-    const snapshots = await db
-      .collectionGroup("novel")
-      .where("id", "==", novelId)
-      .get();
-
-    var data = null;
-    snapshots.forEach(doc => {
-      data = doc.data();
-    });
-
-    return new Novel(data);
   }
 }
 
