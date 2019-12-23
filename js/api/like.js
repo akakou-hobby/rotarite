@@ -1,14 +1,16 @@
 class Like extends FirestoreObject {
-  constructor({ id = null, sceneId = null }) {
+  constructor({ id = null, sceneId = null, isEnable = true }) {
     super();
     this.id = id;
     this.sceneId = sceneId;
+    this.isEnable = isEnable;
   }
 
   data() {
     return {
       id: this.id,
-      sceneId: this.sceneId
+      sceneId: this.sceneId,
+      isEnable: this.isEnable
     };
   }
 }
@@ -28,7 +30,7 @@ class LikeRepository extends FirestoreObjectRepository {
     return like;
   }
 
-  async findMineById(sceneId) {
+  async findActiveMineById(sceneId) {
     const db = firebase.firestore();
     const uid = currentUser().uid;
 
@@ -37,6 +39,7 @@ class LikeRepository extends FirestoreObjectRepository {
       .doc(uid)
       .collection("like")
       .where("sceneId", "==", sceneId)
+      .where("isEnable", "==", true)
       .get();
 
     var data = null;
@@ -44,6 +47,6 @@ class LikeRepository extends FirestoreObjectRepository {
       data = doc.data();
     });
 
-    return new Like(data);
+    return data ? new Like(data) : null;
   }
 }
