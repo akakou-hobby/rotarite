@@ -29,26 +29,41 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <h1>ログイン</h1>
-        <p>メールアドレス</p>
-        <input
-          type="email"
-          value={this.state.email}
-          placeholder="taro@example.com"
-          onChange={e => this.setState({ email: e.target.value })}
-        />
+        <h1 className="title">ログイン</h1>
+        <div class="field">
+          <label class="label">メールアドレス</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              placeholder="taro@example.com"
+              value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">パスワード</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              value={this.state.password}
+              onChange={e => this.setState({ password: e.target.value })}
+            />
+          </div>
+        </div>
+
         <br />
-        <p>パスワード</p>
-        <input
-          type="password"
-          value={this.state.password}
-          placeholder="********"
-          onChange={e => this.setState({ password: e.target.value })}
-        />
-        <br />
-        <button type="button" value="submit" onClick={this.handleLogin}>
-          ログイン
-        </button>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link" onClick={this.handleLogin}>
+              ログイン
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
