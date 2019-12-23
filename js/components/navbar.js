@@ -45,9 +45,16 @@ class NavBar extends React.Component {
               <a className="navbar-link">More</a>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item">Github</a>
+                <a
+                  className="navbar-item"
+                  href="https://github.com/akakou/rotarite"
+                >
+                  Github
+                </a>
                 <hr className="navbar-divider" />
-                <a className="navbar-item">開発者について</a>
+                <a className="navbar-item" href="https://twitter.com/_akakou">
+                  開発者について
+                </a>
               </div>
             </div>
           </div>
