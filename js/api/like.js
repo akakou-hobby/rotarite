@@ -27,4 +27,23 @@ class LikeRepository extends FirestoreObjectRepository {
     this.store(like);
     return like;
   }
+
+  async findMineById(sceneId) {
+    const db = firebase.firestore();
+    const uid = currentUser().uid;
+
+    const snapshots = await db
+      .collection("users")
+      .doc(uid)
+      .collection("like")
+      .where("sceneId", "==", sceneId)
+      .get();
+
+    var data = null;
+    snapshots.forEach(doc => {
+      data = doc.data();
+    });
+
+    return new Like(data);
+  }
 }
