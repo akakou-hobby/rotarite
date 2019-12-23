@@ -4,7 +4,7 @@ class ShowScene extends React.Component {
     this.state = {
       title: "",
       content: "",
-      hasLiked: false
+      isLiked: false
     };
 
     this.handlePost = this.handlePost.bind(this);
@@ -21,11 +21,22 @@ class ShowScene extends React.Component {
     this.props.history.push("/");
   }
 
-  handleLike(e) {
+  async handleLike(e) {
     const sceneId = this.sceneId;
     const likeRepository = new LikeRepository();
 
-    likeRepository.create({ sceneId: sceneId });
+    var isEnable = false;
+
+    if (this.state.isLiked) {
+      const likeRepository = new LikeRepository();
+      this.like = await likeRepository.findActiveMineById(this.sceneId);
+      this.like.isEnable = false;
+      likeRepository.store(this.like);
+    } else {
+      likeRepository.create({ sceneId: sceneId });
+    }
+
+    this.setState({ isLiked: !this.state.isLiked });
   }
 
   async componentDidMount() {
@@ -41,7 +52,7 @@ class ShowScene extends React.Component {
     this.setState({
       title: this.novel.title,
       content: this.scene.content,
-      hasLiked: Boolean(this.like)
+      isLiked: Boolean(this.like)
     });
   }
 
@@ -56,7 +67,7 @@ class ShowScene extends React.Component {
             this.handleLike(e);
           }}
         >
-          {!this.state.hasLiked ? "高評価" : "高評価を解除"}
+          {!this.state.isLiked ? "高評価" : "高評価を解除"}
         </button>
       </div>
     );
