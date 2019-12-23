@@ -19,11 +19,8 @@ class LikeRepository extends FirestoreObjectRepository {
   }
 
   create({ sceneId = null }) {
-    const date = new Date();
-    const now = date.getTime();
-
     const like = new Like({
-      id: now,
+      id: sceneId,
       sceneId: sceneId
     });
 
