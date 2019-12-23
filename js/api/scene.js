@@ -1,5 +1,6 @@
-class Scene {
+class Scene extends FirestoreObject {
   constructor({ id = null, content = null, prevId = null, novelId = null }) {
+    super();
     this.id = id;
     this.content = content;
     this.prevId = prevId;
@@ -16,45 +17,14 @@ class Scene {
   }
 }
 
-class SceneRepository {
-  constructor() {}
-
-  async findById(sceneId) {
-    const db = firebase.firestore();
-
-    const snapshots = await db
-      .collectionGroup("scene")
-      .where("id", "==", sceneId)
-      .get();
-
-    var data = null;
-    snapshots.forEach(doc => {
-      data = doc.data();
-    });
-
-    return new Scene(data);
+class SceneRepository extends FirestoreObjectRepository {
+  constructor() {
+    super(Scene);
   }
 
   findNext(scene) {
     const nextId = scene.next;
     return new this.findById(nextId);
-  }
-
-  store(scene) {
-    const db = firebase.firestore();
-    const uid = currentUser().uid;
-
-    db.collection("users")
-      .doc(uid)
-      .collection("scene")
-      .doc(`${scene.id}`)
-      .set(scene.data())
-      .then(() => {
-        console.log(`${scene.id} successfully written!`);
-      })
-      .catch(error => {
-        console.error(error);
-      });
   }
 
   create({ content = null, prevId = null, novelId = null }) {
