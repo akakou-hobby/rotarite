@@ -23,7 +23,7 @@ class SceneRepository extends FirestoreObjectRepository {
   }
 
   async findNext(scene, count) {
-    if (!count) count = 100;
+    if (!count) count = 10;
 
     const db = firebase.firestore();
 

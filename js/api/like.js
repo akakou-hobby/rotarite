@@ -49,4 +49,20 @@ class LikeRepository extends FirestoreObjectRepository {
 
     return data ? new Like(data) : null;
   }
+
+  async countLikesForScene(scene) {
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup("like")
+      .where("sceneId", "==", scene.id)
+      .get();
+
+    var count = 0;
+    snapshots.forEach(doc => {
+      count++;
+    });
+
+    return count;
+  }
 }
