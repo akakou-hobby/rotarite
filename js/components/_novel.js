@@ -35,20 +35,34 @@ class _Novel extends React.Component {
       <div>
         <h1 className="title">{this.state.title}</h1>
         <br></br>
-
         <h2 className="subtitle">概要</h2>
         <p>{this.state.summary}</p>
-
         <br></br>
-
         <h2 className="subtitle">ID: {this.state.rootId}</h2>
         <p>{this.state.rootContent}</p>
+        <br />
+        <div className="field is-grouped">
+          <div className="control">
+            <a className="button" href={new_url}>
+              シーンの追加
+            </a>
+          </div>
 
-        <br></br>
+          <div className="control">
+            <button
+              className="button"
+              onClick={e => {
+                this.handleLike(e);
+              }}
+            >
+              {!this.state.isLiked ? "高評価" : "高評価を解除"}
+            </button>
+          </div>
+        </div>
+        <br />
 
-        <a class="button" href={new_url}>
-          シーンを追加
-        </a>
+        <h3 className="subtitle">次のシーン候補</h3>
+        {this.state.rootId && <NextScenes sceneId={this.state.rootId} />}
       </div>
     );
   }
