@@ -6,8 +6,6 @@ class NavBar extends React.Component {
     this.state = {
       loggined: false
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
@@ -15,13 +13,6 @@ class NavBar extends React.Component {
       const user = currentUser();
       this.setState({ loggined: Boolean(user) });
     }, 500);
-  }
-
-  async handleClick(e) {
-    location.href = "/#/novel/new";
-
-    // 謎
-    // this.props.history.push("/novel/new");
   }
 
   render() {
@@ -68,7 +59,7 @@ class NavBar extends React.Component {
           <div className="navbar-end">
             <a className="navbar-item">読書する</a>
 
-            <a className="navbar-item" onClick={this.handleClick}>
+            <a className="navbar-item" href="/#/novel/new">
               投稿する
             </a>
             <div className="navbar-item">
