@@ -26,6 +26,12 @@ class SceneForm extends React.Component {
   }
 
   handlePost(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
     const sceneRepo = new SceneRepository();
     const scene = sceneRepo.create({
       title: this.novel.title,

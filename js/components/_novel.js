@@ -31,6 +31,12 @@ class _Novel extends React.Component {
   handlePost(e) {}
 
   async handleLike(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
     const sceneId = this.state.rootId;
     const likeRepository = new LikeRepository();
 
