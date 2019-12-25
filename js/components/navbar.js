@@ -65,10 +65,12 @@ class NavBar extends React.Component {
             <div className="navbar-item">
               {!this.state.loggined && (
                 <div className="buttons">
-                  <a className="button is-primary">
-                    <strong>Sign up</strong>
+                  <a className="button is-primary" href="/#/register">
+                    <strong>　登録　</strong>
                   </a>
-                  <a className="button is-light">Log in</a>
+                  <a className="button is-light" href="/#/login">
+                    ログイン
+                  </a>
                 </div>
               )}
             </div>
