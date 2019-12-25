@@ -56,6 +56,7 @@ class FirestoreObjectRepository {
 
     const snapshots = await db
       .collectionGroup(this.repositoryName)
+      .orderBy("id", "desc")
       .limit(count)
       .get();
 

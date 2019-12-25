@@ -30,6 +30,7 @@ class SceneRepository extends FirestoreObjectRepository {
     const snapshots = await db
       .collectionGroup(this.repositoryName)
       .where("prevId", "==", scene.id)
+      .orderBy("id", "desc")
       .limit(count)
       .get();
 
