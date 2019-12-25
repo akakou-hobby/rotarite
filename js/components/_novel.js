@@ -30,7 +30,7 @@ class _Novel extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.title}</h1>
+        <h3>{this.state.title}</h3>
         <p>{this.state.summary}</p>
 
         <p>{this.state.rootContent}</p>
