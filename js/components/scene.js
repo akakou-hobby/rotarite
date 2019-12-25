@@ -1,4 +1,4 @@
-class ShowScene extends React.Component {
+class _Scene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

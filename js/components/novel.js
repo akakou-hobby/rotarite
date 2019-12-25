@@ -1,4 +1,4 @@
-class ShowNovel extends React.Component {
+class _Novel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
