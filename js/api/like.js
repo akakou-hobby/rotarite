@@ -32,7 +32,7 @@ class LikeRepository extends FirestoreObjectRepository {
 
   async findActiveMineById(sceneId) {
     const db = firebase.firestore();
-    const uid = currentUser().uid;
+    const uid = currentUser();
 
     const snapshots = await db
       .collection("users")

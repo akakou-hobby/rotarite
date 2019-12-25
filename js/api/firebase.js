@@ -13,5 +13,10 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 const currentUser = () => {
-  return firebase.auth().currentUser;
+  try {
+    return firebase.auth().currentUser.uid;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 };

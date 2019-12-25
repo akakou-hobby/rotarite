@@ -18,7 +18,7 @@ class FirestoreObjectRepository {
 
   store(collectionObject) {
     const db = firebase.firestore();
-    const uid = currentUser().uid;
+    const uid = currentUser();
 
     db.collection("users")
       .doc(uid)
