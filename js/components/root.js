@@ -9,7 +9,7 @@ const Root = () => (
   <div>
     <NavBar></NavBar>
 
-    <div class="main">
+    <div className="main">
       <Router history={history}>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />

@@ -34,11 +34,11 @@ class PostNovel extends React.Component {
     return (
       <div>
         <h1 className="title">ノベルの作成</h1>
-        <div class="field">
-          <div class="control">
+        <div className="field">
+          <div className="control">
             <label>タイトル</label>
             <input
-              class="input"
+              className="input"
               type="text"
               value={this.state.title}
               placeholder="桃太郎"
@@ -47,22 +47,22 @@ class PostNovel extends React.Component {
           </div>
         </div>
 
-        <div class="field">
-          <div class="control">
+        <div className="field">
+          <div className="control">
             <label>概要</label>
             <textarea
-              class="textarea"
+              className="textarea"
               placeholder="桃から生まれた人間が鬼を倒す、ジャパニーズトラディショナルファンタジー"
               onChange={e => this.setState({ summary: e.target.value })}
             ></textarea>
           </div>
         </div>
 
-        <div class="field">
-          <div class="control">
+        <div className="field">
+          <div className="control">
             <label>最初</label>
             <textarea
-              class="textarea"
+              className="textarea"
               placeholder="むかしむかしあるところにおじいさんとおばあさんがいました。"
               onChange={e => this.setState({ content: e.target.value })}
             ></textarea>
