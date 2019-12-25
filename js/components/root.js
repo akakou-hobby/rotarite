@@ -17,6 +17,7 @@ const Root = () => (
         <Route path="/scene/:id/new" component={SceneForm} />
         <Route path="/novel/:id" component={_Novel} />
         <Route path="/novel/new" component={NovelForm} />
+        <Route path="/novels" component={NovelList} />
       </Router>
     </div>
   </div>
