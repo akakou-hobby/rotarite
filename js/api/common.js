@@ -18,7 +18,7 @@ class FirestoreObjectRepository {
 
   store(collectionObject) {
     const db = firebase.firestore();
-    const uid = currentUser().uid;
+    const uid = currentUser();
 
     db.collection("users")
       .doc(uid)
@@ -56,6 +56,7 @@ class FirestoreObjectRepository {
 
     const snapshots = await db
       .collectionGroup(this.repositoryName)
+      .orderBy("id", "desc")
       .limit(count)
       .get();
 

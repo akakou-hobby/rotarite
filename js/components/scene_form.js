@@ -26,6 +26,12 @@ class SceneForm extends React.Component {
   }
 
   handlePost(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
     const sceneRepo = new SceneRepository();
     const scene = sceneRepo.create({
       title: this.novel.title,
@@ -34,7 +40,7 @@ class SceneForm extends React.Component {
       novelId: this.novel.id
     });
 
-    this.props.history.push(`/#/scene/${scene.id}`);
+    this.props.history.push(`/scene/${scene.id}`);
   }
 
   render() {

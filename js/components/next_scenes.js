@@ -4,13 +4,17 @@ class NextScenes extends React.Component {
 
     this.handlePost = this.handlePost.bind(this);
     this.state = {
-      nexts: []
+      nexts: [],
+      likes: [],
+      scene: {},
+      novel: {}
     };
   }
 
   async componentDidMount() {
     const novelRepository = new NovelRepository();
     const sceneRepository = new SceneRepository();
+    const likeRepository = new LikeRepository();
 
     const sceneId = this.props.sceneId;
 
@@ -20,10 +24,18 @@ class NextScenes extends React.Component {
     const novel = await novelRepository.findById(scene.novelId);
     const nexts = await sceneRepository.findNext(scene);
 
+    var likes = [];
+
+    for (var next of nexts) {
+      const likesCount = await likeRepository.countLikesForScene(next);
+      likes.push(likesCount);
+    }
+
     this.setState({
       scene: scene,
       nexts: nexts,
-      novel: novel
+      novel: novel,
+      likes: likes
     });
   }
 
@@ -31,14 +43,18 @@ class NextScenes extends React.Component {
 
   render() {
     var nexts = [];
+    const likeRepository = new LikeRepository();
 
-    for (const next of this.state.nexts) {
+    for (const index in this.state.nexts) {
+      const next = this.state.nexts[index];
+      const like = this.state.likes[index];
       const url = `/#/scene/${next.id}`;
 
       nexts.push(
         <div className="box" key={next.id}>
           <h2 className="title is-6">{next.id}</h2>
-          <br></br>
+          <p>評価は{like}です</p>
+          <br />
           <a className="button" href={url}>
             このシーンを読む
           </a>

@@ -15,6 +15,12 @@ class _Scene extends React.Component {
   }
 
   handlePost(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
     const sceneRepo = new SceneRepository();
     sceneRepo.create(this.state);
 
@@ -22,6 +28,12 @@ class _Scene extends React.Component {
   }
 
   async handleLike(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
     const sceneId = this.sceneId;
     const likeRepository = new LikeRepository();
 
@@ -49,8 +61,10 @@ class _Scene extends React.Component {
     const novelRepository = new NovelRepository();
     this.novel = await novelRepository.findById(this.scene.novelId);
 
-    const likeRepository = new LikeRepository();
-    this.like = await likeRepository.findActiveMineById(this.sceneId);
+    try {
+      const likeRepository = new LikeRepository();
+      this.like = await likeRepository.findActiveMineById(this.sceneId);
+    } catch (e) {}
 
     this.setState({
       title: this.novel.title,
@@ -61,7 +75,7 @@ class _Scene extends React.Component {
   }
 
   render() {
-    const new_url = `#/new/scene/${this.state.sceneId}`;
+    const new_url = `/#/new/scene/${this.state.sceneId}`;
 
     return (
       <div>

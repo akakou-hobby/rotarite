@@ -7,6 +7,7 @@ class _Novel extends React.Component {
     };
 
     this.handlePost = this.handlePost.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   async componentDidMount() {
@@ -22,11 +23,36 @@ class _Novel extends React.Component {
       title: this.novel.title,
       summary: this.novel.summary,
       rootContent: this.root.content,
-      rootId: this.root.id
+      rootId: this.root.id,
+      isLiked: false
     });
   }
 
   handlePost(e) {}
+
+  async handleLike(e) {
+    if (!currentUser()) {
+      alert("ログインしてください");
+      location.href = "/#/register";
+      return;
+    }
+
+    const sceneId = this.state.rootId;
+    const likeRepository = new LikeRepository();
+
+    var isEnable = false;
+
+    if (this.state.isLiked) {
+      const likeRepository = new LikeRepository();
+      this.like = await likeRepository.findActiveMineById(sceneId);
+      this.like.isEnable = false;
+      likeRepository.store(this.like);
+    } else {
+      likeRepository.create({ sceneId: sceneId });
+    }
+
+    this.setState({ isLiked: !this.state.isLiked });
+  }
 
   render() {
     const new_url = `#/new/scene/${this.state.rootId}`;
