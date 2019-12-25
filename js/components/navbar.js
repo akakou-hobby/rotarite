@@ -57,7 +57,9 @@ class NavBar extends React.Component {
           </div>
 
           <div className="navbar-end">
-            <a className="navbar-item">読書する</a>
+            <a className="navbar-item" href="/#/novels">
+              読書する
+            </a>
 
             <a className="navbar-item" href="/#/novel/new">
               投稿する
