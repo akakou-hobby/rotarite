@@ -22,12 +22,14 @@ class SceneRepository extends FirestoreObjectRepository {
     super(Scene);
   }
 
-  findNext(scene) {
+  async findNext(scene, count) {
+    if (!count) count = 100;
+
     const db = firebase.firestore();
 
     const snapshots = await db
       .collectionGroup(this.repositoryName)
-      .where("prevId", "=", scene.id)
+      .where("prevId", "==", scene.id)
       .limit(count)
       .get();
 
