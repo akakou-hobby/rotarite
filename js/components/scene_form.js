@@ -34,7 +34,7 @@ class SceneForm extends React.Component {
       novelId: this.novel.id
     });
 
-    this.props.history.push(`/#/scene/${scene.id}`);
+    this.props.history.push(`/scene/${scene.id}`);
   }
 
   render() {

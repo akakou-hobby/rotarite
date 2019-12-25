@@ -61,7 +61,7 @@ class _Scene extends React.Component {
   }
 
   render() {
-    const new_url = `#/new/scene/${this.state.sceneId}`;
+    const new_url = `/#/new/scene/${this.state.sceneId}`;
 
     return (
       <div>
