@@ -29,6 +29,8 @@ class _Novel extends React.Component {
   handlePost(e) {}
 
   render() {
+    const new_url = `#/new/scene/${this.state.rootId}`;
+
     return (
       <div>
         <h1 className="title">{this.state.title}</h1>
@@ -44,7 +46,9 @@ class _Novel extends React.Component {
 
         <br></br>
 
-        <button class="button">シーンを追加</button>
+        <a class="button" href={new_url}>
+          シーンを追加
+        </a>
       </div>
     );
   }
