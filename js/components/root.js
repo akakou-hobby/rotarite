@@ -14,10 +14,10 @@ const Root = () => (
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/scene/:id" component={_Scene} />
-        <Route path="/scene/:id/new" component={SceneForm} />
-        <Route path="/novel/:id" component={_Novel} />
-        <Route path="/novel/new" component={NovelForm} />
-        <Route path="/novels" component={NovelList} />
+        <Route path="/novel/:id/" component={_Novel} />
+        <Route path="/novels/" component={NovelList} />
+        <Route path="/new/scene/:id/" component={SceneForm} />
+        <Route path="/new/novel/" component={NovelForm} />
       </Router>
     </div>
   </div>
