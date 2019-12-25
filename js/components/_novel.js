@@ -21,7 +21,8 @@ class _Novel extends React.Component {
     this.setState({
       title: this.novel.title,
       summary: this.novel.summary,
-      rootContent: this.root.content
+      rootContent: this.root.content,
+      rootId: this.root.id
     });
   }
 
@@ -30,10 +31,20 @@ class _Novel extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.state.title}</h3>
+        <h1 className="title">{this.state.title}</h1>
+        <br></br>
+
+        <h2 className="subtitle">概要</h2>
         <p>{this.state.summary}</p>
 
+        <br></br>
+
+        <h2 className="subtitle">ID: {this.state.rootId}</h2>
         <p>{this.state.rootContent}</p>
+
+        <br></br>
+
+        <button class="button">シーンを追加</button>
       </div>
     );
   }
