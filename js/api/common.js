@@ -48,4 +48,23 @@ class FirestoreObjectRepository {
 
     return new this.firestoreObjectClass(data);
   }
+
+  async getList(count) {
+    if (!count) count = 10;
+
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup(this.repositoryName)
+      .limit(count)
+      .get();
+
+    var firestoreObjectList = [];
+    snapshots.forEach(doc => {
+      const firestoreObject = new this.firestoreObjectClass(doc.data());
+      firestoreObjectList.push(firestoreObject);
+    });
+
+    return firestoreObjectList;
+  }
 }
