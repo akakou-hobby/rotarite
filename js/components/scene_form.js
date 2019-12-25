@@ -1,4 +1,4 @@
-class PostScene extends React.Component {
+class SceneForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

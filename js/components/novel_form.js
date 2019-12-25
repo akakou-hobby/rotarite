@@ -1,4 +1,4 @@
-class PostNovel extends React.Component {
+class NovelForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
