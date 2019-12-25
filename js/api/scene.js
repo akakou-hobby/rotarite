@@ -23,8 +23,21 @@ class SceneRepository extends FirestoreObjectRepository {
   }
 
   findNext(scene) {
-    const nextId = scene.next;
-    return new this.findById(nextId);
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup(this.repositoryName)
+      .where("prevId", "=", scene.id)
+      .limit(count)
+      .get();
+
+    var scenes = [];
+    snapshots.forEach(doc => {
+      const scene = new Scene(doc.data());
+      scenes.push(scene);
+    });
+
+    return scenes;
   }
 
   create({ content = null, prevId = null, novelId = null }) {
