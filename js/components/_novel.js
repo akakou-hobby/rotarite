@@ -33,7 +33,7 @@ class _Novel extends React.Component {
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "/#/register";
+      location.href = "#/register";
       return;
     }
 

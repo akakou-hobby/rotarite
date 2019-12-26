@@ -12,7 +12,7 @@ class Register extends React.Component {
   handleRegiser(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.history.push("/#/novels");
+        this.props.history.push("#/novels");
       }
     });
 

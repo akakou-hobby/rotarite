@@ -28,7 +28,7 @@ class SceneForm extends React.Component {
   handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "/#/register";
+      location.href = "#/register";
       return;
     }
 
