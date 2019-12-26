@@ -12,7 +12,7 @@ class Login extends React.Component {
   handleLogin(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.history.push("/#/novels");
+        this.props.history.push("/novels");
       }
     });
 
