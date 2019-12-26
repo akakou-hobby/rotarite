@@ -56,7 +56,7 @@ class NextScenes extends React.Component {
     for (const next of this.state.nexts) {
       const scene = next.scene;
       const like = next.like;
-      const url = `/#/scene/${scene.id}`;
+      const url = `#/scene/${scene.id}`;
 
       nextList.push(
         <div className="box" key={scene.id}>
