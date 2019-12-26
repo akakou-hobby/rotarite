@@ -16,7 +16,7 @@ class NavBar extends React.Component {
       .signOut()
       .then(() => {
         console.log("ログアウトしました");
-        location.href = "#/novels";
+        location.href = "/#/novels";
       });
   }
 
@@ -82,20 +82,20 @@ class NavBar extends React.Component {
               </div>
             </div>
 
-            <a className="navbar-item" href="#/novels">
+            <a className="navbar-item" href="/#/novels">
               読書する
             </a>
 
-            <a className="navbar-item" href="#/new/novel">
+            <a className="navbar-item" href="/#/new/novel">
               投稿する
             </a>
             <div className="navbar-item">
               {!this.state.loggined && (
                 <div className="buttons">
-                  <a className="button is-primary" href="#/register">
+                  <a className="button is-primary" href="/#/register">
                     <strong>　登録　</strong>
                   </a>
-                  <a className="button is-light" href="#/login">
+                  <a className="button is-light" href="/#/login">
                     ログイン
                   </a>
                 </div>

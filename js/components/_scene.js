@@ -18,7 +18,7 @@ class _Scene extends React.Component {
   handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "#/register";
+      location.href = "/#/register";
       return;
     }
 
@@ -31,7 +31,7 @@ class _Scene extends React.Component {
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "#/register";
+      location.href = "/#/register";
       return;
     }
 
@@ -77,8 +77,8 @@ class _Scene extends React.Component {
   }
 
   render() {
-    const new_url = `#/new/scene/${this.state.sceneId}`;
-    const novel_url = `#/novel/${this.state.novelId}`;
+    const new_url = `/#/new/scene/${this.state.sceneId}`;
+    const novel_url = `/#/novel/${this.state.novelId}`;
 
     return (
       <div>
