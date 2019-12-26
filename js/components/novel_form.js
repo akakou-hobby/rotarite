@@ -39,7 +39,7 @@ class NovelForm extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="title">ノベルの作成</h1>
+        <h1 className="title">小説の作成</h1>
         <div className="field">
           <div className="control">
             <label>タイトル</label>
