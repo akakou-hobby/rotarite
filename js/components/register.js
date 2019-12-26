@@ -12,7 +12,7 @@ class Register extends React.Component {
   handleRegiser(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.history.push("/");
+        this.props.history.push("/#/novels");
       }
     });
 
@@ -22,6 +22,7 @@ class Register extends React.Component {
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage);
       });
   }
 
@@ -58,7 +59,7 @@ class Register extends React.Component {
 
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" onClick={this.handleLogin}>
+            <button className="button is-link" onClick={this.handleRegiser}>
               新規登録
             </button>
           </div>
