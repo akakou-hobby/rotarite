@@ -4,7 +4,8 @@ class _Scene extends React.Component {
     this.state = {
       title: "",
       content: "",
-      isLiked: false
+      isLiked: false,
+      novelId: null
     };
 
     this.handlePost = this.handlePost.bind(this);
@@ -70,16 +71,21 @@ class _Scene extends React.Component {
       title: this.novel.title,
       content: this.scene.content,
       isLiked: Boolean(this.like),
-      sceneId: this.sceneId
+      sceneId: this.sceneId,
+      novelId: this.novel.id
     });
   }
 
   render() {
     const new_url = `/#/new/scene/${this.state.sceneId}`;
+    const novel_url = `/#/novel/${this.state.novelId}`;
 
     return (
       <div>
-        <h1 className="title">{this.state.title}</h1>
+        <a href={novel_url}>
+          <h1 className="title">{this.state.title}</h1>
+        </a>
+
         <br />
         <h2 className="subtitle">ID: {this.state.sceneId}</h2>
         <p>{this.state.content}</p>
