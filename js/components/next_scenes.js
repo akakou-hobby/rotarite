@@ -5,7 +5,6 @@ class NextScenes extends React.Component {
     this.handlePost = this.handlePost.bind(this);
     this.state = {
       nexts: [],
-      likes: [],
       scene: {},
       novel: {}
     };
@@ -24,35 +23,44 @@ class NextScenes extends React.Component {
     const novel = await novelRepository.findById(scene.novelId);
     const nexts = await sceneRepository.findNext(scene);
 
-    var likes = [];
+    var sorted = [];
 
-    for (var next of nexts) {
+    for (var index in nexts) {
+      const next = nexts[index];
       const likesCount = await likeRepository.countLikesForScene(next);
-      likes.push(likesCount);
+      sorted.push({
+        like: likesCount,
+        scene: next
+      });
     }
+
+    sorted.sort((a, b) => {
+      if (a.like == b.like) return 0;
+      else if (a.like < b.like) return 1;
+      else return -1;
+    });
 
     this.setState({
       scene: scene,
-      nexts: nexts,
       novel: novel,
-      likes: likes
+      nexts: sorted
     });
   }
 
   handlePost(e) {}
 
   render() {
-    var nexts = [];
-    const likeRepository = new LikeRepository();
+    // todo: 命名を変更
+    var nextList = [];
 
-    for (const index in this.state.nexts) {
-      const next = this.state.nexts[index];
-      const like = this.state.likes[index];
-      const url = `/#/scene/${next.id}`;
+    for (const next of this.state.nexts) {
+      const scene = next.scene;
+      const like = next.like;
+      const url = `/#/scene/${scene.id}`;
 
-      nexts.push(
-        <div className="box" key={next.id}>
-          <h2 className="title is-6">{next.id}</h2>
+      nextList.push(
+        <div className="box" key={scene.id}>
+          <h2 className="title is-6">{scene.id}</h2>
           <p>評価は{like}です</p>
           <br />
           <a className="button" href={url}>
@@ -62,6 +70,6 @@ class NextScenes extends React.Component {
       );
     }
 
-    return <div>{nexts}</div>;
+    return <div>{nextList}</div>;
   }
 }
