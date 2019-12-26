@@ -26,14 +26,14 @@ class NovelForm extends React.Component {
       novelId: null
     });
 
-    novelRepo.create({
+    const novel = novelRepo.create({
       title: this.state.title,
       summary: this.state.summary,
       content: this.state.content,
       root: root
     });
 
-    this.props.history.push("/");
+    this.props.history.push(`/novel/${novel.id}`);
   }
 
   render() {
