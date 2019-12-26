@@ -19,7 +19,7 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">
+          <a className="navbar-item" href="/#/novels">
             <img src="/img/logo-hyper-wide2.png" width="94" height="28" />
           </a>
 
@@ -37,9 +37,11 @@ class NavBar extends React.Component {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
+          <div className="navbar-start"></div>
+
+          <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">サイト情報</a>
+              <a className="navbar-link"></a>
 
               <div className="navbar-dropdown">
                 <a
@@ -54,9 +56,7 @@ class NavBar extends React.Component {
                 </a>
               </div>
             </div>
-          </div>
 
-          <div className="navbar-end">
             <a className="navbar-item" href="/#/novels">
               読書する
             </a>
