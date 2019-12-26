@@ -63,7 +63,14 @@ class NextScenes extends React.Component {
           <h2 className="title is-6">{scene.id}</h2>
           <p>評価は{like}です</p>
           <br />
-          <a className="button" href={url}>
+          <a
+            className="button"
+            onClick={e => {
+              location.href = url;
+              window.location.reload();
+              // this.props.history.push(url);
+            }}
+          >
             このシーンを読む
           </a>
         </div>
