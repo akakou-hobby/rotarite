@@ -6,6 +6,18 @@ class NavBar extends React.Component {
     this.state = {
       loggined: false
     };
+
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  async handleLogout(e) {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("ログアウトしました");
+        location.href = "/#/novels";
+      });
   }
 
   async componentDidMount() {
@@ -54,6 +66,19 @@ class NavBar extends React.Component {
                 <a className="navbar-item" href="https://twitter.com/_akakou">
                   開発者（akakou）
                 </a>
+                {this.state.loggined && (
+                  <div>
+                    <hr className="navbar-divider" />
+                    <a
+                      className="navbar-item"
+                      onClick={e => {
+                        this.handleLogout(e);
+                      }}
+                    >
+                      ログアウト
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
