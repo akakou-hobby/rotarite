@@ -16,7 +16,7 @@ class NavBar extends React.Component {
       .signOut()
       .then(() => {
         console.log("ログアウトしました");
-        location.href = `${CONFIG.BASE_URL}/#/novels`;
+        location.href = `${CONFIG.BASE_URL}#/novels`;
       });
   }
 
