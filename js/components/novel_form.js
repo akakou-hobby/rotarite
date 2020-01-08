@@ -13,7 +13,7 @@ class NovelForm extends React.Component {
   async handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = `${CONFIG.BASE_URL}/#/register`;
+      location.href = `${CONFIG.BASE_URL}#/register`;
       return;
     }
 
