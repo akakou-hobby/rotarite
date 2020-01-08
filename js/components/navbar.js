@@ -30,7 +30,7 @@ class NavBar extends React.Component {
   render() {
     const novelsURL = `${CONFIG.BASE_URL}#/novels`
     const newNovelURL = `${CONFIG.BASE_URL}#/new/novel`
-    const logoURL = `${CONFIG.BASE_URL}/img/logo-hyper-wide2.png`
+    const logoURL = `${CONFIG.STATIC_URL}/img/logo-hyper-wide2.png`
     const registerURL = `${CONFIG.BASE_URL}#/register`
     const loginURL = `${CONFIG.BASE_URL}#/login`
     
