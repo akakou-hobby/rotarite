@@ -37,7 +37,7 @@ class _Novel extends React.Component {
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = `${CONFIG.BASE_URL}/#/register`;
+      location.href = `${CONFIG.BASE_URL}#/register`;
       return;
     }
 
@@ -59,7 +59,7 @@ class _Novel extends React.Component {
   }
 
   render() {
-    const new_url = `${CONFIG.BASE_URL}/#/new/scene/${this.state.rootId}`;
+    const new_url = `${CONFIG.BASE_URL}#/new/scene/${this.state.rootId}`;
 
     const lines = this.state.rootContent.split("\n");
 
