@@ -3,7 +3,11 @@ class _Novel extends React.Component {
     super(props);
     this.state = {
       title: "",
-      content: ""
+      summary: "",
+      // content: "",
+      rootContent: "",
+      rootId: "",
+      isLiked: false
     };
 
     this.handlePost = this.handlePost.bind(this);
@@ -33,7 +37,7 @@ class _Novel extends React.Component {
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "/#/register";
+      location.href = `${CONFIG.BASE_URL}/#/register`;
       return;
     }
 
@@ -55,7 +59,15 @@ class _Novel extends React.Component {
   }
 
   render() {
-    const new_url = `#/new/scene/${this.state.rootId}`;
+    const new_url = `${CONFIG.BASE_URL}/#/new/scene/${this.state.rootId}`;
+
+    const lines = this.state.rootContent.split("\n");
+
+    var content = [];
+    for (const index in lines) {
+      const line = lines[index];
+      content.push(<p key={index}>{line}</p>);
+    }
 
     return (
       <div>
@@ -65,7 +77,7 @@ class _Novel extends React.Component {
         <p>{this.state.summary}</p>
         <br></br>
         <h2 className="subtitle">ID: {this.state.rootId}</h2>
-        <p>{this.state.rootContent}</p>
+        {content}
         <br />
         <div className="field is-grouped">
           <div className="control">

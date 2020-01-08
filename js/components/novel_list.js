@@ -24,7 +24,7 @@ class NovelList extends React.Component {
     var novels = [];
 
     for (const novel of this.state.novels) {
-      const url = `/#/novel/${novel.id}`;
+      const url = `${CONFIG.BASE_URL}/#/novel/${novel.id}`;
 
       novels.push(
         <div className="box" key={novel.id}>

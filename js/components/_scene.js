@@ -18,7 +18,7 @@ class _Scene extends React.Component {
   handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "/#/register";
+      location.href = `${CONFIG.BASE_URL}/#/register`;
       return;
     }
 
@@ -31,7 +31,7 @@ class _Scene extends React.Component {
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
-      location.href = "/#/register";
+      location.href = `${CONFIG.BASE_URL}/#/register`;
       return;
     }
 
@@ -77,18 +77,25 @@ class _Scene extends React.Component {
   }
 
   render() {
-    const new_url = `/#/new/scene/${this.state.sceneId}`;
-    const novel_url = `/#/novel/${this.state.novelId}`;
+    const new_url = `${CONFIG.BASE_URL}/#/new/scene/${this.state.sceneId}`;
+    const novel_url = `${CONFIG.BASE_URL}/#/novel/${this.state.novelId}`;
+
+    const lines = this.state.content.split("\n");
+
+    var content = [];
+    for (const index in lines) {
+      const line = lines[index];
+      content.push(<p key={index}>{line}</p>);
+    }
 
     return (
       <div>
         <a href={novel_url}>
           <h1 className="title">{this.state.title}</h1>
         </a>
-
         <br />
         <h2 className="subtitle">ID: {this.state.sceneId}</h2>
-        <p>{this.state.content}</p>
+        {content}
         <br />
         <div className="field is-grouped">
           <div className="control">

@@ -16,7 +16,7 @@ class NavBar extends React.Component {
       .signOut()
       .then(() => {
         console.log("ログアウトしました");
-        location.href = "/#/novels";
+        location.href = `${CONFIG.BASE_URL}/#/novels`;
       });
   }
 
@@ -28,11 +28,15 @@ class NavBar extends React.Component {
   }
 
   render() {
+    const novelsURL = `${CONFIG.BASE_URL}/#/novels`
+    const newNovelURL = `${CONFIG.BASE_URL}/#/new/novel`
+    const logoURL = `${CONFIG.BASE_URL}/img/logo-hyper-wide2.png`
+    
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="#/novels">
-            <img src="img/logo-hyper-wide2.png" width="94" height="28" />
+          <a className="navbar-item" href={novelsURL}>
+            <img src={logoURL} width="94" height="28" />
           </a>
 
           <a
@@ -82,11 +86,11 @@ class NavBar extends React.Component {
               </div>
             </div>
 
-            <a className="navbar-item" href="/#/novels">
+            <a className="navbar-item" href={novelsURL}>
               読書する
             </a>
 
-            <a className="navbar-item" href="/#/new/novel">
+            <a className="navbar-item" href={newNovelURL}>
               投稿する
             </a>
             <div className="navbar-item">
