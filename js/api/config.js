@@ -1,4 +1,4 @@
 const CONFIG = {
     BASE_URL: "/",
-    STATIC_URL: "/"
+    STATIC_URL: ""
 }
