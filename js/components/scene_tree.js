@@ -1,46 +1,117 @@
 class SceneTree extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      sceneId: null
-    };
   }
 
   async componentDidMount() {
+    const sceneRepository = new SceneRepository();
+    const novelRepository = new NovelRepository();
+
+    const scene = await sceneRepository.findById(this.props.sceneId);
+    const novel = await novelRepository.findById(scene.novelId);
+    const scenes = await sceneRepository.findByNovel(novel);
+
+    const _scene = scene;
+
+    var nodes = [];
+    var edges = [];
+
+    for (const scene of scenes) {
+      const url = `${CONFIG.BASE_URL}#/scene/${scene.id}`;
+      const sceneId = scene.id.toString();
+
+      if (scene.prevId) {
+        edges.push({
+          data: {
+            source: scene.prevId.toString(),
+            target: sceneId,
+            relationship: ""
+          }
+        });
+      }
+
+      if (_scene.id == scene.id) {
+        nodes.push({
+          data: {
+            id: sceneId,
+            name: "このシーン",
+            label: "current",
+            href: url
+          }
+        });
+      } else if (!scene.prevId) {
+        nodes.push({
+          data: {
+            id: sceneId,
+            name: "先頭のシーン",
+            label: "root",
+            href: url
+          }
+        });
+      } else {
+        nodes.push({
+          data: {
+            id: sceneId,
+            name: sceneId,
+            label: "other",
+            href: url
+          }
+        });
+      }
+    }
+
     const elements = {
-      nodes: [
-        { data: { id: "172", name: "Tom Cruise", label: "Person" } },
-        { data: { id: "183", title: "Top Gun", label: "Movie" } }
-      ],
-      edges: [
-        { data: { source: "172", target: "183", relationship: "Acted_In" } }
-      ]
+      nodes: nodes,
+      edges: edges
     };
 
     const style = [
       {
-        selector: 'node[label = "Person"]',
-        css: { "background-color": "#6FB1FC", content: "data(name)" }
+        selector: 'node[label = "other"]',
+        css: {
+          "background-color": "hsl(0, 0%, 48%)",
+          content: "data(name)"
+        }
       },
       {
-        selector: 'node[label = "Movie"]',
-        css: { "background-color": "#F5A45D", content: "data(title)" }
+        selector: 'node[label = "current"]',
+        css: {
+          "background-color": "hsl(171, 100%, 41%)",
+          content: "data(name)"
+        }
+      },
+      {
+        selector: 'node[label = "root"]',
+        css: {
+          "background-color": "hsl(0, 0%, 29%)",
+          content: "data(name)"
+        }
       },
       {
         selector: "edge",
-        css: { content: "data(relationship)", "target-arrow-shape": "triangle" }
+        css: {
+          content: "data(relationship)"
+        }
       }
     ];
 
     const layout = {
-      name: 'grid'
+      name: "cola",
+      fit: true
     };
 
     this.cy = cytoscape({
       container: document.getElementById("tree"),
       elements: elements,
       style: style,
-      layout: layout
+      layout: layout,
+      autounselectify: true,
+      boxSelectionEnabled: false
+    });
+
+    this.cy.on("tap", "node", function() {
+      location.href = this.data("href");
+      location.reload();
     });
   }
 
@@ -51,7 +122,8 @@ class SceneTree extends React.Component {
   render() {
     return (
       <div>
-        <div id="tree" className="tree" />
+        <h2 className="subtitle">シーン一覧</h2>
+        <div id="tree" className="tree has-text-light" />
       </div>
     );
   }
