@@ -94,7 +94,10 @@ class _Scene extends React.Component {
           <h1 className="title">{this.state.title}</h1>
         </a>
         <br />
-        <h2 className="subtitle">ID: {this.state.sceneId}</h2>
+        <SceneTree />
+        <br>
+        {/* <br /> */}
+        {/* <h2 className="subtitle">ID: {this.state.sceneId}</h2> */}
         {content}
         <br />
         <div className="field is-grouped">
