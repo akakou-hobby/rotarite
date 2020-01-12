@@ -43,6 +43,25 @@ class SceneRepository extends FirestoreObjectRepository {
     return scenes;
   }
 
+  async findByNovel(novel, count) {
+    if (!count) count = 10;
+
+    const db = firebase.firestore();
+
+    const snapshots = await db
+      .collectionGroup(this.repositoryName)
+      .where("novelId", "==", novel.id)
+      .get();
+
+    var scenes = [];
+    snapshots.forEach(doc => {
+      const scene = new Scene(doc.data());
+      scenes.push(scene);
+    });
+
+    return scenes;
+  }
+
   create({ content = null, prevId = null, novelId = null }) {
     const date = new Date();
     const now = date.getTime();
