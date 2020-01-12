@@ -1,3 +1,8 @@
+/**
+ * firebaseの設定関連とユーザ関連
+ * @author akakou
+ */
+
 const firebaseConfig = {
   apiKey: "AIzaSyDs6KIoUnAwCs1hDuIE-ZxxKZSQVMD09kw",
   authDomain: "rotarite-f63f1.firebaseapp.com",
@@ -12,6 +17,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+/**
+ * 現在ログインしているユーザのuidを取得
+ */
 const currentUser = () => {
   try {
     return firebase.auth().currentUser.uid;
