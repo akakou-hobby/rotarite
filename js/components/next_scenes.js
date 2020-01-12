@@ -60,7 +60,8 @@ class NextScenes extends React.Component {
 
       nextList.push(
         <div className="box" key={scene.id}>
-          <h2 className="title is-6">{scene.id}</h2>
+          <h3 className="title is-6">{scene.id}</h3>
+
           <p>評価は{like}です</p>
           <br />
           <a
@@ -77,6 +78,14 @@ class NextScenes extends React.Component {
       );
     }
 
-    return <div>{nextList}</div>;
+    // const isShowing = Boolean(nextList.length);
+
+    return (
+      <div>
+        <h2 className="subtitle">次のシーン候補</h2>
+
+        {nextList.length ? nextList : <p>次のシーンはありません</p>}
+      </div>
+    );
   }
 }
