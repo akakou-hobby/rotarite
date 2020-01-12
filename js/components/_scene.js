@@ -95,8 +95,6 @@ class _Scene extends React.Component {
         </a>
 
         <br />
-        {/* <br /> */}
-        {/* <h2 className="subtitle">ID: {this.state.sceneId}</h2> */}
         {content}
         <br />
         <div className="field is-grouped">
@@ -119,14 +117,10 @@ class _Scene extends React.Component {
           <br />
         </div>
         <br />
-        <h2 className="subtitle">シーン一覧</h2>
-
-        <SceneTree />
-        <br />
-
-        <h2 className="subtitle">次のシーン</h2>
-
         {this.state.sceneId && <NextScenes sceneId={this.state.sceneId} />}
+
+        <br />
+        {this.state.sceneId && <SceneTree sceneId={this.state.sceneId} />}
       </div>
     );
   }

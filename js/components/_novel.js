@@ -99,8 +99,12 @@ class _Novel extends React.Component {
         </div>
         <br />
 
-        <h3 className="subtitle">次のシーン候補</h3>
+        {/* <h3 className="subtitle">次のシーン候補</h3> */}
+        {/* {this.state.rootId && <NextScenes sceneId={this.state.rootId} />} */}
         {this.state.rootId && <NextScenes sceneId={this.state.rootId} />}
+
+        <br />
+        {this.state.rootId && <SceneTree sceneId={this.state.rootId} />}
       </div>
     );
   }
