@@ -95,7 +95,7 @@ class _Scene extends React.Component {
         </a>
         <br />
         <SceneTree />
-        <br>
+        <br />
         {/* <br /> */}
         {/* <h2 className="subtitle">ID: {this.state.sceneId}</h2> */}
         {content}
