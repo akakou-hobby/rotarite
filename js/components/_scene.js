@@ -93,8 +93,7 @@ class _Scene extends React.Component {
         <a href={novel_url}>
           <h1 className="title">{this.state.title}</h1>
         </a>
-        <br />
-        <SceneTree />
+
         <br />
         {/* <br /> */}
         {/* <h2 className="subtitle">ID: {this.state.sceneId}</h2> */}
@@ -117,8 +116,16 @@ class _Scene extends React.Component {
               {!this.state.isLiked ? "高評価" : "高評価を解除"}
             </button>
           </div>
+          <br />
         </div>
         <br />
+        <h2 className="subtitle">シーン一覧</h2>
+
+        <SceneTree />
+        <br />
+
+        <h2 className="subtitle">次のシーン</h2>
+
         {this.state.sceneId && <NextScenes sceneId={this.state.sceneId} />}
       </div>
     );
