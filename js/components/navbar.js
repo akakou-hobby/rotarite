@@ -1,4 +1,15 @@
+/**
+ * ナビゲーションバーについて
+ * @author akakou
+ */
+
+/**
+ * ナビゲーションバーについてのコンポーネント
+ */
 class NavBar extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
     console.log(this.props);
@@ -10,6 +21,9 @@ class NavBar extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  /**
+   * ログアウトする処理
+   */
   async handleLogout(e) {
     firebase
       .auth()
@@ -20,6 +34,9 @@ class NavBar extends React.Component {
       });
   }
 
+  /**
+   * ログイン関係を遷移する
+   */
   async componentDidMount() {
     setInterval(() => {
       const user = currentUser();
@@ -27,13 +44,16 @@ class NavBar extends React.Component {
     }, 500);
   }
 
+  /**
+   * 描画
+   */
   render() {
-    const novelsURL = `${CONFIG.BASE_URL}#/novels`
-    const newNovelURL = `${CONFIG.BASE_URL}#/new/novel`
-    const logoURL = `${CONFIG.STATIC_URL}/img/logo-hyper-wide2.png`
-    const registerURL = `${CONFIG.BASE_URL}#/register`
-    const loginURL = `${CONFIG.BASE_URL}#/login`
-    
+    const novelsURL = `${CONFIG.BASE_URL}#/novels`;
+    const newNovelURL = `${CONFIG.BASE_URL}#/new/novel`;
+    const logoURL = `${CONFIG.STATIC_URL}/img/logo-hyper-wide2.png`;
+    const registerURL = `${CONFIG.BASE_URL}#/register`;
+    const loginURL = `${CONFIG.BASE_URL}#/login`;
+
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
