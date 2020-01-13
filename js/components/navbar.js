@@ -108,18 +108,13 @@ class NavBar extends React.Component {
               </div>
             </div>
 
-            {this.state.loggined && (
-              <div>
-                <a className="navbar-item" href={novelsURL}>
-                  読書する
-                </a>
+            <a className="navbar-item" href={novelsURL}>
+              読書する
+            </a>
 
-                <a className="navbar-item" href={newNovelURL}>
-                  投稿する
-                </a>
-              </div>
-            )}
-
+            <a className="navbar-item" href={newNovelURL}>
+              投稿する
+            </a>
             <div className="navbar-item">
               {!this.state.loggined && (
                 <div className="buttons">
