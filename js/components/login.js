@@ -1,4 +1,15 @@
+/**
+ * ログインを行う
+ * @auther akakou
+ */
+
+/**
+ * ログインを行うコンポーネント
+ */
 class Login extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +20,9 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  /**
+   * ログインをする処理
+   */
   handleLogin(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -26,6 +40,9 @@ class Login extends React.Component {
       });
   }
 
+  /**
+   * 描画
+   */
   render() {
     return (
       <div>

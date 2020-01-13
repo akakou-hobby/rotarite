@@ -1,4 +1,15 @@
+/**
+ * 小説の投稿関係
+ * @author akakou
+ */
+
+/**
+ * 小説の投稿を行うフォームのコンポーネント
+ */
 class NovelForm extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +21,9 @@ class NovelForm extends React.Component {
     this.handlePost = this.handlePost.bind(this);
   }
 
+  /**
+   * 小説を投稿する
+   */
   async handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
@@ -36,6 +50,9 @@ class NovelForm extends React.Component {
     this.props.history.push(`/novel/${novel.id}`);
   }
 
+  /**
+   * 描画
+   */
   render() {
     return (
       <div>

@@ -1,8 +1,21 @@
+/**
+ * シーンのツリーグラフ
+ */
+
+/**
+ * シーンのツリーグラフのコンポーネント
+ */
 class SceneTree extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
   }
 
+  /**
+   * ネットワークのグラフを生成
+   */
   async componentDidMount() {
     const sceneRepository = new SceneRepository();
     const novelRepository = new NovelRepository();
@@ -115,10 +128,9 @@ class SceneTree extends React.Component {
     });
   }
 
-  handlePost(e) {}
-
-  async handleLike(e) {}
-
+  /**
+   * 描画
+   */
   render() {
     return (
       <div>

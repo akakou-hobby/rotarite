@@ -1,3 +1,11 @@
+/**
+ * novelIdに対応するnovelの概要、ルートを表示する
+ * @author akakou
+ */
+
+/**
+ * novelIdに対応するnovelの概要、ルートを表示するコンポーネント
+ */
 class _Novel extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +22,9 @@ class _Novel extends React.Component {
     this.handleLike = this.handleLike.bind(this);
   }
 
+  /**
+   * novelIdに対応するnovelの情報と、そのルートの情報を取得
+   */
   async componentDidMount() {
     const sceneRepository = new SceneRepository();
     const novelRepository = new NovelRepository();
@@ -34,6 +45,9 @@ class _Novel extends React.Component {
 
   handlePost(e) {}
 
+  /**
+   * 高評価を押すと実行される
+   */
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
@@ -58,6 +72,9 @@ class _Novel extends React.Component {
     this.setState({ isLiked: !this.state.isLiked });
   }
 
+  /**
+   * 描画
+   */
   render() {
     const new_url = `${CONFIG.BASE_URL}#/new/scene/${this.state.rootId}`;
 

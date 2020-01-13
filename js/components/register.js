@@ -1,4 +1,15 @@
+/**
+ * 新規登録関係
+ * @auther akakou
+ */
+
+/**
+ * 新規登録ページのコンポーネント
+ */
 class Register extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +20,9 @@ class Register extends React.Component {
     this.handleRegiser = this.handleRegiser.bind(this);
   }
 
+  /**
+   * 新規登録を行う
+   */
   handleRegiser(e) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -26,6 +40,9 @@ class Register extends React.Component {
       });
   }
 
+  /**
+   * 描画
+   */
   render() {
     return (
       <div>

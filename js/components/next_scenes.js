@@ -1,4 +1,14 @@
+/**
+ * 次のシーン一覧を表示する
+ */
+
+/**
+ * 次のシーン一覧のコンポーネント
+ */
 class NextScenes extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
 
@@ -10,6 +20,9 @@ class NextScenes extends React.Component {
     };
   }
 
+  /**
+   * novelとsceneとlikeを取得
+   */
   async componentDidMount() {
     const novelRepository = new NovelRepository();
     const sceneRepository = new SceneRepository();
@@ -47,8 +60,9 @@ class NextScenes extends React.Component {
     });
   }
 
-  handlePost(e) {}
-
+  /**
+   * 描画
+   */
   render() {
     // todo: 命名を変更
     var nextList = [];
@@ -77,8 +91,6 @@ class NextScenes extends React.Component {
         </div>
       );
     }
-
-    // const isShowing = Boolean(nextList.length);
 
     return (
       <div>
