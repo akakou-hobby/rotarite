@@ -1,3 +1,11 @@
+/**
+ * sceneIdに対応するsceneを表示する
+ * @author akakou
+ */
+
+/**
+ * sceneIdに対応するsceneの概要を表示するコンポーネント
+ */
 class _Scene extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +23,9 @@ class _Scene extends React.Component {
     this.sceneId = parseInt(params.params.id, 0);
   }
 
+  /**
+   * 投稿するイベント
+   */
   handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
@@ -28,6 +39,9 @@ class _Scene extends React.Component {
     this.props.history.push("/");
   }
 
+  /**
+   * 投稿に高評価をつける
+   */
   async handleLike(e) {
     if (!currentUser()) {
       alert("ログインしてください");
@@ -52,6 +66,9 @@ class _Scene extends React.Component {
     this.setState({ isLiked: !this.state.isLiked });
   }
 
+  /**
+   * sceneとnovelとlikeを読み込み
+   */
   async componentDidMount() {
     const params = this.props.match;
     this.sceneId = parseInt(params.params.id, 0);
@@ -76,6 +93,9 @@ class _Scene extends React.Component {
     });
   }
 
+  /**
+   * 描画
+   */
   render() {
     const new_url = `${CONFIG.BASE_URL}#/new/scene/${this.state.sceneId}`;
     const novel_url = `${CONFIG.BASE_URL}#/novel/${this.state.novelId}`;
