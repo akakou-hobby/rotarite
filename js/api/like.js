@@ -1,4 +1,15 @@
+/**
+ * 投稿に対する高評価に関する実装
+ * @auther akakou
+ */
+
+/**
+ * 投稿に対する高評価を表すオブジェクト
+ */
 class Like extends FirestoreObject {
+  /**
+   * コンストラクタ
+   */
   constructor({ id = null, sceneId = null, isEnable = true }) {
     super();
     this.id = id;
@@ -6,6 +17,9 @@ class Like extends FirestoreObject {
     this.isEnable = isEnable;
   }
 
+  /**
+   * JSON化したデータを取得するメソッド
+   */
   data() {
     return {
       id: this.id,
@@ -15,11 +29,17 @@ class Like extends FirestoreObject {
   }
 }
 
+/**
+ * 投稿に対する高評価を扱うリポジトリクラス
+ */
 class LikeRepository extends FirestoreObjectRepository {
   constructor() {
     super(Like);
   }
 
+  /**
+   * 投稿に対する高評価オブジェクトを生成して保存する
+   */
   create({ sceneId = null }) {
     const like = new Like({
       id: sceneId,
@@ -30,6 +50,9 @@ class LikeRepository extends FirestoreObjectRepository {
     return like;
   }
 
+  /*
+   * sceneIdからlike一覧を取得する
+   */
   async findActiveMineById(sceneId) {
     const db = firebase.firestore();
     const uid = currentUser();
@@ -50,6 +73,9 @@ class LikeRepository extends FirestoreObjectRepository {
     return data ? new Like(data) : null;
   }
 
+  /**
+   * sceneに対するlikeの数を取得する
+   */
   async countLikesForScene(scene) {
     const db = firebase.firestore();
 
