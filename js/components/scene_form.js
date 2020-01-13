@@ -1,4 +1,14 @@
+/**
+ * シーンの投稿フォーム
+ */
+
+/**
+ * シーンの投稿フォームのコンポーネント
+ */
 class SceneForm extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +22,9 @@ class SceneForm extends React.Component {
     this.prevId = parseInt(params.params.id, 0);
   }
 
+  /**
+   * sceneとnovelの読み込み
+   */
   async componentDidMount() {
     const sceneRepository = new SceneRepository();
     const novelRepository = new NovelRepository();
@@ -25,6 +38,9 @@ class SceneForm extends React.Component {
     });
   }
 
+  /**
+   * 投稿するコード
+   */
   handlePost(e) {
     if (!currentUser()) {
       alert("ログインしてください");
@@ -43,6 +59,9 @@ class SceneForm extends React.Component {
     this.props.history.push(`/scene/${scene.id}`);
   }
 
+  /**
+   * 描画
+   */
   render() {
     return (
       <div>
