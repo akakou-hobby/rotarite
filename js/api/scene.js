@@ -1,4 +1,10 @@
+/**
+ * シーンを表すクラス
+ */
 class Scene extends FirestoreObject {
+  /**
+   * コンストラクタ
+   */
   constructor({ id = null, content = null, prevId = null, novelId = null }) {
     super();
     this.id = id;
@@ -7,6 +13,9 @@ class Scene extends FirestoreObject {
     this.novelId = novelId;
   }
 
+  /**
+   * JSON化したデータを取得するメソッド
+   */
   data() {
     return {
       id: this.id,
@@ -17,11 +26,20 @@ class Scene extends FirestoreObject {
   }
 }
 
+/**
+ * シーンを表すオブジェクトのリポジトリクラス
+ */
 class SceneRepository extends FirestoreObjectRepository {
+  /**
+   * コンストラクタ
+   */
   constructor() {
     super(Scene);
   }
 
+  /**
+   * sceneの次のシーンを取得
+   */
   async findNext(scene, count) {
     if (!count) count = 10;
 
@@ -43,6 +61,9 @@ class SceneRepository extends FirestoreObjectRepository {
     return scenes;
   }
 
+  /**
+   * novelからシーン一覧を取得
+   */
   async findByNovel(novel, count) {
     if (!count) count = 10;
 
@@ -62,6 +83,9 @@ class SceneRepository extends FirestoreObjectRepository {
     return scenes;
   }
 
+  /**
+   * シーンを生成して保存する
+   */
   create({ content = null, prevId = null, novelId = null }) {
     const date = new Date();
     const now = date.getTime();
@@ -78,6 +102,9 @@ class SceneRepository extends FirestoreObjectRepository {
   }
 }
 
+/**
+ * @todo この関数を消す
+ */
 const currentScene = async () => {
   const sceneStringId = getParameter("scene");
   const sceneId = Number(sceneStringId);
