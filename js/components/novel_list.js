@@ -37,6 +37,11 @@ class NovelList extends React.Component {
   render() {
     var novels = [];
 
+    if (!currentUser()) {
+      alert("登録またはログインして下さい");
+      location.href = `${CONFIG.BASE_URL}#/register`;
+    }
+
     for (const novel of this.state.novels) {
       const url = `${CONFIG.BASE_URL}#/novel/${novel.id}`;
 

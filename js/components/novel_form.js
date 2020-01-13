@@ -54,6 +54,11 @@ class NovelForm extends React.Component {
    * 描画
    */
   render() {
+    if (!currentUser()) {
+      alert("登録またはログインして下さい");
+      location.href = `${CONFIG.BASE_URL}#/register`;
+    }
+
     return (
       <div>
         <h1 className="title">小説の作成</h1>
