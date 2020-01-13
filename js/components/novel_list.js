@@ -13,7 +13,6 @@ class NovelList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlePost = this.handlePost.bind(this);
     this.state = {
       novels: []
     };
