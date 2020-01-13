@@ -1,4 +1,15 @@
+/**
+ * 小説一覧の表示
+ * @author akakou
+ */
+
+/**
+ * 小説一覧を表示するコンポーネント
+ */
 class NovelList extends React.Component {
+  /**
+   * コンストラクタ
+   */
   constructor(props) {
     super(props);
 
@@ -8,6 +19,9 @@ class NovelList extends React.Component {
     };
   }
 
+  /**
+   * novelを取得
+   */
   async componentDidMount() {
     const novelRepository = new NovelRepository();
     const novelId = getIdFromURI(this);
@@ -18,8 +32,9 @@ class NovelList extends React.Component {
     });
   }
 
-  handlePost(e) {}
-
+  /**
+   * 描画
+   */
   render() {
     var novels = [];
 
