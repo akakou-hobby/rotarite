@@ -1,4 +1,10 @@
+/**
+ * 小説を表すクラス
+ */
 class Novel extends FirestoreObject {
+  /**
+   * コンストラクタ
+   */
   constructor({ id = null, title = null, summary = null, rootId = null }) {
     super();
     this.id = id;
@@ -7,6 +13,9 @@ class Novel extends FirestoreObject {
     this.rootId = rootId;
   }
 
+  /**
+   * JSON化したデータを取得するメソッド
+   */
   data() {
     return {
       id: this.id,
@@ -17,11 +26,20 @@ class Novel extends FirestoreObject {
   }
 }
 
+/**
+ * 小説を表すオブジェクトのリポジトリクラス
+ */
 class NovelRepository extends FirestoreObjectRepository {
+  /**
+   * コンストラクタ
+   */
   constructor() {
     super(Novel);
   }
 
+  /**
+   * 小説を生成して保存する
+   */
   create({ title = null, summary = null, root = null }) {
     const scaneRepo = new SceneRepository();
 
@@ -46,6 +64,9 @@ class NovelRepository extends FirestoreObjectRepository {
   }
 }
 
+/**
+ * @todo この関数を消す
+ */
 const currentNovel = async () => {
   const novelStringId = getParameter("novel");
   const novelId = Number(novelStringId);
