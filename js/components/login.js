@@ -1,6 +1,6 @@
 /**
  * ログインを行う
- * @auther akakou
+ * @author akakou
  */
 
 /**

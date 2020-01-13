@@ -1,3 +1,7 @@
+/**
+ * @author akakou
+ */
+
 const NotFound = () => {
   return (
     <div>

@@ -1,5 +1,6 @@
 /**
  * 小説を表すクラス
+ * @author akakou
  */
 class Novel extends FirestoreObject {
   /**

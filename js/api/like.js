@@ -1,6 +1,6 @@
 /**
  * 投稿に対する高評価に関する実装
- * @auther akakou
+ * @author akakou
  */
 
 /**

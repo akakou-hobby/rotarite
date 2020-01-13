@@ -1,3 +1,7 @@
+/**
+ * @author akakou
+ */
+
 const Router = window.ReactRouterDOM.HashRouter;
 const Route = window.ReactRouterDOM.Route;
 const Link = window.ReactRouterDOM.Link;

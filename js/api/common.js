@@ -1,6 +1,6 @@
 /**
  * Firestoreで扱うオブジェクト（novel、scene）、その周りの処理についての実装
- * @auther akakou
+ * @author akakou
  */
 
 /**

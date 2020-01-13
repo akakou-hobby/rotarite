@@ -1,5 +1,6 @@
 /**
  * シーンを表すクラス
+ * @author akakou
  */
 class Scene extends FirestoreObject {
   /**

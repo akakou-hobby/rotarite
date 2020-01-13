@@ -1,6 +1,6 @@
 /**
  * 新規登録関係
- * @auther akakou
+ * @author akakou
  */
 
 /**
