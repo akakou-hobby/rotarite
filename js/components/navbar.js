@@ -48,6 +48,10 @@ class NavBar extends React.Component {
    * 描画
    */
   render() {
+    if (!currentUser()) {
+      location.href = `${CONFIG.BASE_URL}#/register`;
+    }
+
     const novelsURL = `${CONFIG.BASE_URL}#/novels`;
     const newNovelURL = `${CONFIG.BASE_URL}#/new/novel`;
     const logoURL = `${CONFIG.STATIC_URL}/img/logo-hyper-wide2.png`;
