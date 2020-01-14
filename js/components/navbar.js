@@ -59,7 +59,7 @@ class NavBar extends React.Component {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href={novelsURL}>
-            <img src={logoURL} width="94" height="28" />
+            <img src={logoURL} alt="logo" width="94" height="28" />
           </a>
 
           <a
