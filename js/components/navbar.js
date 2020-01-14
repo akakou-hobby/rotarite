@@ -1,5 +1,6 @@
 /**
  * ナビゲーションバーについて
+ * 参考：https://bulma.io/documentation/components/navbar/
  * @author akakou
  */
 
