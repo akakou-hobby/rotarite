@@ -9,6 +9,10 @@
 class FirestoreObject {
   constructor() {}
 
+  /**
+   * JSON化したデータを取得するメソッド
+   * @abstract
+   */
   data() {
     throw new Error("Not Implemented Yet");
   }
@@ -23,6 +27,9 @@ class FirestoreObjectRepository {
     this.repositoryName = firestoreObjectClass.name.toLowerCase();
   }
 
+  /**
+   * @abstract
+   */
   create() {
     throw new Error("Not Implemented Yet");
   }
