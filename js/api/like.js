@@ -9,6 +9,10 @@
 class Like extends FirestoreObject {
   /**
    * コンストラクタ
+   * @param {Object} args 引数
+   * @param {Number} args.id 高評価のID
+   * @param {Number} args.sceneId 高評価するシーンのID
+   * @param {Boolean} args.isEnable 高評価にするか否か
    */
   constructor({ id = null, sceneId = null, isEnable = true }) {
     super();
@@ -19,6 +23,7 @@ class Like extends FirestoreObject {
 
   /**
    * JSON化したデータを取得するメソッド
+   * @override
    */
   data() {
     return {
@@ -39,6 +44,7 @@ class LikeRepository extends FirestoreObjectRepository {
 
   /**
    * 投稿に対する高評価オブジェクトを生成して保存する
+   * @param {Number} sceneId シーンのID
    */
   create({ sceneId = null }) {
     const like = new Like({
@@ -50,8 +56,9 @@ class LikeRepository extends FirestoreObjectRepository {
     return like;
   }
 
-  /*
+  /**
    * sceneIdからlike一覧を取得する
+   * @param {Number} sceneId シーンのID
    */
   async findActiveMineById(sceneId) {
     const db = firebase.firestore();
@@ -75,6 +82,7 @@ class LikeRepository extends FirestoreObjectRepository {
 
   /**
    * sceneに対するlikeの数を取得する
+   * @param {Scene} scene 対象のシーン
    */
   async countLikesForScene(scene) {
     const db = firebase.firestore();

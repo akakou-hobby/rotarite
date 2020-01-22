@@ -7,8 +7,15 @@
  * Firestoreで扱うオブジェクトの抽象クラス
  */
 class FirestoreObject {
+  /**
+   * コンストラクタ
+   */
   constructor() {}
 
+  /**
+   * JSON化したデータを取得するメソッド
+   * @abstract
+   */
   data() {
     throw new Error("Not Implemented Yet");
   }
@@ -18,11 +25,17 @@ class FirestoreObject {
  * Firestoreで扱うオブジェクトを操作するリポジトリクラスの抽象クラス
  */
 class FirestoreObjectRepository {
+  /**
+   * コンストラクタ
+   */
   constructor(firestoreObjectClass) {
     this.firestoreObjectClass = firestoreObjectClass;
     this.repositoryName = firestoreObjectClass.name.toLowerCase();
   }
 
+  /**
+   * @abstract
+   */
   create() {
     throw new Error("Not Implemented Yet");
   }

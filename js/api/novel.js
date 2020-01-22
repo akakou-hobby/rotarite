@@ -5,6 +5,10 @@
 class Novel extends FirestoreObject {
   /**
    * コンストラクタ
+   * @param {Object} args 引数
+   * @param {String} args.title 小説のタイトル
+   * @param {String} args.summary 小説の説明
+   * @param {Scene} args.root 一番最初のシーン
    */
   constructor({ id = null, title = null, summary = null, rootId = null }) {
     super();
@@ -16,6 +20,7 @@ class Novel extends FirestoreObject {
 
   /**
    * JSON化したデータを取得するメソッド
+   * @override
    */
   data() {
     return {
@@ -40,6 +45,11 @@ class NovelRepository extends FirestoreObjectRepository {
 
   /**
    * 小説を生成して保存する
+   * @override
+   * @param {Object} args 引数
+   * @param {String} args.title 小説のタイトル
+   * @param {String} args.summary 小説の説明
+   * @param {Scene} args.root 一番最初のシーン
    */
   create({ title = null, summary = null, root = null }) {
     const scaneRepo = new SceneRepository();
@@ -64,16 +74,3 @@ class NovelRepository extends FirestoreObjectRepository {
     return novel;
   }
 }
-
-/**
- * @todo この関数を消す
- */
-const currentNovel = async () => {
-  const novelStringId = getParameter("novel");
-  const novelId = Number(novelStringId);
-
-  if (novelId) {
-    const novelRepo = new NovelRepository();
-    return await novelRepo.findById(novelId);
-  }
-};

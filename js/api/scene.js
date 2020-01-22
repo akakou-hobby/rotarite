@@ -5,6 +5,10 @@
 class Scene extends FirestoreObject {
   /**
    * コンストラクタ
+   * @param {Object} args 引数
+   * @param {String} args.id シーンのID
+   * @param {Number} args.prevId 一つ前のシーンのID
+   * @param {Number} args.novelId 小説のID
    */
   constructor({ id = null, content = null, prevId = null, novelId = null }) {
     super();
@@ -13,9 +17,9 @@ class Scene extends FirestoreObject {
     this.prevId = prevId;
     this.novelId = novelId;
   }
-
   /**
    * JSON化したデータを取得するメソッド
+   * @override
    */
   data() {
     return {
@@ -40,6 +44,8 @@ class SceneRepository extends FirestoreObjectRepository {
 
   /**
    * sceneの次のシーンを取得
+   * @param {Scene} scene 検索する対象の直前のシーン
+   * @param {Number} count 検索する最大件数
    */
   async findNext(scene, count) {
     if (!count) count = 10;
@@ -64,6 +70,8 @@ class SceneRepository extends FirestoreObjectRepository {
 
   /**
    * novelからシーン一覧を取得
+   * @param {Scene} scene 検索する対象の直前のシーン
+   * @param {Number} count 検索する最大件数
    */
   async findByNovel(novel, count) {
     if (!count) count = 10;
@@ -86,6 +94,11 @@ class SceneRepository extends FirestoreObjectRepository {
 
   /**
    * シーンを生成して保存する
+   * @override
+   * @param {Object} args 引数
+   * @param {String} args.content 内容
+   * @param {Number} args.prevId 一つ前のシーンのID
+   * @param {Number} args.novelId 小説のID
    */
   create({ content = null, prevId = null, novelId = null }) {
     const date = new Date();
@@ -102,16 +115,3 @@ class SceneRepository extends FirestoreObjectRepository {
     return scene;
   }
 }
-
-/**
- * @todo この関数を消す
- */
-const currentScene = async () => {
-  const sceneStringId = getParameter("scene");
-  const sceneId = Number(sceneStringId);
-
-  if (sceneId) {
-    const sceneRepo = new SceneRepository();
-    return await sceneRepo.findById(sceneId);
-  }
-};
