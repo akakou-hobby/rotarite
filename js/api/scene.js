@@ -18,6 +18,7 @@ class Scene extends FirestoreObject {
     this.novelId = novelId;
   }
   /**
+   * JSON化したデータを取得するメソッド
    * @override
    */
   data() {

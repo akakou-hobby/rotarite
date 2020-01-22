@@ -19,6 +19,7 @@ class Novel extends FirestoreObject {
   }
 
   /**
+   * JSON化したデータを取得するメソッド
    * @override
    */
   data() {

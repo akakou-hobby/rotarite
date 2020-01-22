@@ -22,6 +22,7 @@ class Like extends FirestoreObject {
   }
 
   /**
+   * JSON化したデータを取得するメソッド
    * @override
    */
   data() {
